@@ -24,5 +24,14 @@ public class CustomerController {
         annakowal.setAddress("Katowice");
         return List.of(jankowalski, annakowal);
     }
-
+    @GetMapping(path = "/customers/{customerId}", produces = "application/json")
+    public Customer customerById(@PathVariable("customerId") Integer id){
+        Customer jankowalski = new Customer();
+        jankowalski.setFirstnameLastname("Jan Kowalski");
+        jankowalski.setAddress("Katowice");
+        Customer annakowal = new Customer();
+        annakowal.setFirstnameLastname("Anna Kowal");
+        annakowal.setAddress("Katowice");
+        return 1==id ? jankowalski:annakowal;
+    }
 }
