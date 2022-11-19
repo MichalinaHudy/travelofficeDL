@@ -42,5 +42,6 @@ public class TripController {
         krakow.setStart(LocalDate.of(2022, 12, 30));
         krakow.setEnd(LocalDate.of(2023,01,07));
         return 1==id ? warszawa:krakow;
-}}
+}
+}
 

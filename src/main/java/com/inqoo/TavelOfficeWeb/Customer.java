@@ -10,7 +10,7 @@ public class Customer {
         return "Customer{" +
                 "firstnameLastname='" + firstnameLastname + '\'' +
                 ", address='" + address + '\'' +
-                ", trip=" + trip +
+                ", trip=" + (trip != null ? trip : "") +
                 '}';
     }
 
