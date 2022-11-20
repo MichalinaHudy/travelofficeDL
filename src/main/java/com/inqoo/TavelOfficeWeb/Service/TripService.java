@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TripService {
         @Autowired
@@ -14,6 +16,14 @@ public class TripService {
             tripRepo.saveTrip(trip);
         } // logikę biznesową
 
-        public List<Trip> getAllCities(String tripFragment) { return tripRepo.getAllTrips();
+        public List<Trip> getAllCities(String tripFragment) {
+                List<Trip> result = TripRepo.getAllTrips();
+                if(tripFragment != null){
+                result = result.stream()
+                        .filter(c->c.getDestination().contains(tripFragment))
+                        .collect(Collectors.toList());
+                }
+
+                return tripRepo.getAllTrips();
         }
 }
