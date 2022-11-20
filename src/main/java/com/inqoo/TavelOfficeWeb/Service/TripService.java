@@ -14,7 +14,6 @@ public class TripService {
             tripRepo.saveTrip(trip);
         } // logikę biznesową
 
-        public List<Trip> getAllCities() {
-            return tripRepo.getAllTrips();
+        public List<Trip> getAllCities() { return tripRepo.getAllTrips();
         }
 }

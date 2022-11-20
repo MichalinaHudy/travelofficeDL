@@ -12,11 +12,11 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepo customerRepo;
-    public void saveCustomer(Customer customer) {CustomerRepo.saveCustomer(customer);
-
-        public List<Customer> getAllCustomers() { return Customer.getAllCustomers();
-        }
+    public void saveCustomer(Customer customer) {customerRepo.saveCustomer(customer);
     }
-  }
+
+    public List<Customer> getAllCustomers() { return customerRepo.getAllCustomers();
+    }
+}
 
 

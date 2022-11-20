@@ -1,19 +1,22 @@
 package com.inqoo.TavelOfficeWeb.Repository;
 
 import com.inqoo.TavelOfficeWeb.Model.Customer;
-import com.inqoo.TavelOfficeWeb.Service.CustomerService;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class CustomerRepo {
-    private List<CustomerService> Customer = new ArrayList<>(); // dane
+
+    private static List<Customer> customers = new ArrayList<>(); // dane
 
     public static void saveCustomer(Customer customer) {
-        Customer.add();
+        customers.add(customer);
     } // logikę biznesową
 
-    public List<Customer> getAllCities() {
-        return saveCustomer();
+
+    public List<Customer> getAllCustomers() { return customers;
     }
+
+
 }

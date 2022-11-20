@@ -14,7 +14,6 @@ public class TripRepo {
             trips.add(trip);
         } // logikę biznesową
 
-        public List<Trip> getAllTrips() {
-            return trips;
+        public List<Trip> getAllTrips() { return trips;
         }
 }
