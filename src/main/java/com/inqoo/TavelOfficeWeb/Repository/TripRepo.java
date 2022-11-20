@@ -21,7 +21,7 @@ public class TripRepo {
         public static List<Trip> getAllTrips() { return trips;}
         public List<Trip> FindTripByPriceRange(double rangeFrom, double rangeTo){
         return trips.stream()
-                .filter(t ->t.getPrice()>rangeTo)
+                .filter(t ->t.getPrice()>rangeFrom)
                 .filter(t->t.getPrice()<rangeTo)
                 .collect(Collectors.toList());
 
@@ -39,13 +39,13 @@ public class TripRepo {
                 c2.setDestination("Sosnowiec");
                 c2.setEnd(LocalDate.of(2022, 12, 2));
                 c2.setStart(LocalDate.of(2022, 11, 21));
-                c2.setPriceEur(1400000);
+                c2.setPriceEur(1500);
 
                 Trip c3 = new Trip();
                 c3.setDestination("Londyn");
                 c3.setEnd(LocalDate.of(2022, 12, 2));
                 c3.setStart(LocalDate.of(2022, 11, 21));
-                c3.setPriceEur(1000);
+                c3.setPriceEur(1600);
 
                 trips.add(c1);
                 trips.add(c2);
