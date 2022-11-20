@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.TavelOfficeWeb.Model;
 
 import java.time.LocalDate;
 
@@ -38,12 +38,12 @@ public class Trip {
         return true;
     }
 
-    void setStart(LocalDate _start) {
+    public void setStart(LocalDate _start) {
         if (datesAreValid(_start, end)) {
             start = _start;
         }
      }
-    void setEnd(LocalDate _end) {
+    public void setEnd(LocalDate _end) {
         if (datesAreValid(start, _end)) {
             end = _end;
         }

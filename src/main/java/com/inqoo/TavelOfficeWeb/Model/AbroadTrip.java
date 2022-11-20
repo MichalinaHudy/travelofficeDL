@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.TavelOfficeWeb.Model;
 
 public class AbroadTrip extends Trip {
     private double insurrance;

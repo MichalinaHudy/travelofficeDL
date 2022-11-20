@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.TavelOfficeWeb.Model;
 
 public class Customer {
     private String firstnameLastname;

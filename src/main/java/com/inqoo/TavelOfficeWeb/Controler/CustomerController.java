@@ -1,9 +1,9 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.TavelOfficeWeb.Controler;
 
+import com.inqoo.TavelOfficeWeb.Model.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController

@@ -1,5 +1,6 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.TavelOfficeWeb.Controler;
 
+import com.inqoo.TavelOfficeWeb.Model.Trip;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
