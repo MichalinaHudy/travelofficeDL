@@ -24,6 +24,6 @@ public class TripService {
                         .collect(Collectors.toList());
                 }
 
-                return tripRepo.getAllTrips();
+                return result;
         }
 }
