@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class TripRepo {
 
-        private List<Trip> trips = new ArrayList<>(); // dane
+        private static List<Trip> trips = new ArrayList<>(); // dane
 
         public void saveTrip(Trip trip) {
             trips.add(trip);
@@ -31,6 +31,7 @@ public class TripRepo {
                 c2.setEnd(LocalDate.of(2022, 12, 2));
                 c2.setStart(LocalDate.of(2022, 11, 21));
                 c2.setPriceEur(1400000);
+
                 Trip c3 = new Trip();
                 c3.setDestination("Londyn");
                 c3.setEnd(LocalDate.of(2022, 12, 2));
