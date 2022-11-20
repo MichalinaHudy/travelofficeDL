@@ -1,9 +1,11 @@
 package com.inqoo.TavelOfficeWeb.Controler;
 
+import com.inqoo.TavelOfficeWeb.Model.Exception.ErrorMsg;
 import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.Service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,13 +33,20 @@ public class TripController {
         @GetMapping(path = "/tripsByPrice", produces = "application/json")
 
     public List<Trip> tripsBYPrice(@RequestParam double rangeFrom, @RequestParam double rangeTo) {
-            try {
-                return tripService.getTripByPrice(rangeFrom, rangeTo);
-            }catch(NoTripByPriceFoundException e){
-            throw new RuntimeException(e);
+        return tripService.getTripByPrice(rangeFrom, rangeTo);
 
-            }
         }
+
+        @ExceptionHandler(NoTripByPriceFoundException.class)
+        @ResponseStatus(HttpStatus.NOT_FOUND)
+        public ResponseEntity<ErrorMsg> handleNoTripByPriceFoundException (NoTripByPriceFoundException exception){
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorMsg(exception.getMessage(),HttpStatus.NOT_FOUND.value()));
+
+        }
+
+
 
 
 //        Trip warszawa = new Trip();

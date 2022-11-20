@@ -28,9 +28,9 @@ public class TripService {
                 return result;
         }
         public List<Trip> getTripByPrice (double rangeFrom, double rangeTo)throws NoTripByPriceFoundException {
-                List<Trip> tripsBYPrice = tripRepo.FindTripByPriceRange(rangeFrom,rangeTo);
-        if(tripsBYPrice.isEmpty()){
-        throw new NoTripByPriceFoundException();
+                List<Trip> tripsBYPrice = tripRepo.findTripsByPriceRange(rangeFrom,rangeTo);
+        if(tripsBYPrice.isEmpty()) {
+                throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);
         }
         return tripsBYPrice;
         }
