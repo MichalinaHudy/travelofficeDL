@@ -29,9 +29,13 @@ public class TripService {
         }
         public List<Trip> getTripByPrice (double rangeFrom, double rangeTo)throws NoTripByPriceFoundException {
                 List<Trip> tripsBYPrice = tripRepo.findTripsByPriceRange(rangeFrom,rangeTo);
-        if(tripsBYPrice.isEmpty()) {
+                if(rangeFrom>rangeTo){
+                        throw new NoTripByPriceFoundException("Podano zły zakres");
+                }
+                if(tripsBYPrice.isEmpty()) {
                 throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);
         }
+
         return tripsBYPrice;
         }
 }
