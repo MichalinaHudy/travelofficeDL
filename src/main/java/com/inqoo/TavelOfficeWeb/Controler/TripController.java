@@ -21,7 +21,9 @@ public class TripController {
         return ResponseEntity.created(null).build();
 }
     @GetMapping(path = "/trips", produces = "application/json")
-    public List<Trip> trips(){
+    public List<Trip> trips(@RequestParam(name="tripFragment", required = false) String tripFragment) {
+        System.out.println("Zapytanie zawierało parametr 'tripFragment' o wartości: "+tripFragment);
+
 //        Trip warszawa = new Trip();
 //        warszawa.setDestination("warszawa");
 //        warszawa.setEnd(LocalDate.of(2022,12,2));
@@ -33,7 +35,7 @@ public class TripController {
 //        krakow.setPriceEur(1500);
 //        krakow.setStart(LocalDate.of(2022, 12, 30));
 //        krakow.setEnd(LocalDate.of(2023,01,07));
-        return tripService.getAllCities();
+        return tripService.getAllCities(tripFragment);
     }
     @GetMapping(path = "/trips/{tripId}", produces = "application/json")
     public Trip tripsById(@PathVariable("tripId") Integer id){
