@@ -1,7 +1,6 @@
 package com.inqoo.TavelOfficeWeb.Controler;
 
 import com.inqoo.TavelOfficeWeb.Model.Exception.ErrorMsg;
-import com.inqoo.TavelOfficeWeb.Model.Exception.ErrorMsg1;
 import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByThisValue;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
@@ -34,13 +33,10 @@ public class TripController {
 
     @GetMapping(path = "/tripsByPrice", produces = "application/json")
 
-    public List<Trip> tripsBYPrice(@RequestParam double rangeFrom, @RequestParam double rangeTo) {
-        if (rangeTo < rangeFrom) {
-            tripService.getTripByValue(rangeFrom, rangeTo);
-        } else {
-            tripService.getTripByPrice(rangeFrom, rangeTo);
+    public List<Trip> getTripByValue(@RequestParam double rangeFrom, @RequestParam double rangeTo) {
+        return tripService.getTripByValue(rangeFrom, rangeTo);
         }
-    }
+
 
 
 
@@ -55,11 +51,11 @@ public class TripController {
 
         }
         @ExceptionHandler(NoTripByThisValue.class)
-        @ResponseStatus(HttpStatus.NOT_FOUND)
-        public ResponseEntity<ErrorMsg1> handleNoTripsValue(NoTripByThisValue exception){
+        @ResponseStatus(HttpStatus.BAD_REQUEST)
+        public ResponseEntity<ErrorMsg> handleNoTripsValue(NoTripByThisValue exception){
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(new ErrorMsg1(exception.getMessage(),HttpStatus.NO_CONTENT.value()));
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorMsg(exception.getMessage(),HttpStatus.BAD_REQUEST.value()));
         }
 
 

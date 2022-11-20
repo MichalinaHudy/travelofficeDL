@@ -30,22 +30,20 @@ public class TripService {
                 return result;
 
         }
-        public List<Trip> getTripByValue(double rangeFrom,double rangeTo)throws NoTripByThisValue {
-                List<Trip> tripsByValue = tripRepo.findTripsByPriceRange(rangeFrom, rangeTo);
+
+        public List<Trip> getTripByValue(double rangeFrom, double rangeTo) throws NoTripByThisValue, NoTripByThisValue {
                 if (rangeFrom > rangeTo) {
                         throw new NoTripByThisValue("Podano zły zakres");
                 }
-        return tripsByValue;
+                        List<Trip> tripsByValue = tripRepo.findTripsByPriceRange(rangeFrom, rangeTo);
+
+                        if (tripsByValue.isEmpty()) {
+                                throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);
+                        }
+                        return tripsByValue;
+
+                }
+
         }
 
 
-        public List<Trip> getTripByPrice (double rangeFrom, double rangeTo)throws NoTripByPriceFoundException  {
-                List<Trip> tripsBYPrice = tripRepo.findTripsByPriceRange(rangeFrom,rangeTo);
-
-                if(tripsBYPrice.isEmpty()) {
-                throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);
-        }
-
-        return tripsBYPrice;
-        }
-}
