@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class TripRepo {
 
@@ -17,6 +19,13 @@ public class TripRepo {
         } // logikę biznesową
 
         public static List<Trip> getAllTrips() { return trips;}
+        public List<Trip> FindTripByPriceRange(double rangeFrom, double rangeTo){
+        return trips.stream()
+                .filter(t ->t.getPrice()>rangeTo)
+                .filter(t->t.getPrice()<rangeTo)
+                .collect(Collectors.toList());
+
+        }
         @PostConstruct
 
         public void createTrips() {

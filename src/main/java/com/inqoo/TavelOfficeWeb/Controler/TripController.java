@@ -1,5 +1,6 @@
 package com.inqoo.TavelOfficeWeb.Controler;
 
+import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.Service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,30 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
-    @PostMapping(path ="/trips", consumes = "application/json")
-    public ResponseEntity createCity(@RequestBody Trip trip){
-        System.out.println("Wycieczka do: "+ trip);
+    @PostMapping(path = "/trips", consumes = "application/json")
+    public ResponseEntity createCity(@RequestBody Trip trip) {
+        System.out.println("Wycieczka do: " + trip);
         tripService.saveTrip(trip);
         return ResponseEntity.created(null).build();
-}
+    }
+
     @GetMapping(path = "/trips", produces = "application/json")
-    public List<Trip> trips(@RequestParam(name="tripFragment", required = false) String tripFragment) {
-        System.out.println("Zapytanie zawierało parametr 'tripFragment' o wartości: "+tripFragment);
+    public List<Trip> trips(@RequestParam(name = "tripFragment", required = false) String tripFragment) {
+        System.out.println("Zapytanie zawierało parametr 'tripFragment' o wartości: " + tripFragment);
+        return tripService.getAllCities(tripFragment);
+    }
+
+        @GetMapping(path = "/tripsByPrice", produces = "application/json")
+
+    public List<Trip> tripsBYPrice(@RequestParam double rangeFrom, @RequestParam double rangeTo) {
+            try {
+                return tripService.getTripByPrice(rangeFrom, rangeTo);
+            }catch(NoTripByPriceFoundException e){
+            throw new RuntimeException(e);
+
+            }
+        }
+
 
 //        Trip warszawa = new Trip();
 //        warszawa.setDestination("warszawa");
@@ -35,8 +51,7 @@ public class TripController {
 //        krakow.setPriceEur(1500);
 //        krakow.setStart(LocalDate.of(2022, 12, 30));
 //        krakow.setEnd(LocalDate.of(2023,01,07));
-        return tripService.getAllCities(tripFragment);
-    }
+
     @GetMapping(path = "/trips/{tripId}", produces = "application/json")
     public Trip tripsById(@PathVariable("tripId") Integer id){
         Trip warszawa = new Trip();

@@ -1,5 +1,6 @@
 package com.inqoo.TavelOfficeWeb.Service;
 
+import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.Repository.TripRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,12 @@ public class TripService {
                 }
 
                 return result;
+        }
+        public List<Trip> getTripByPrice (double rangeFrom, double rangeTo)throws NoTripByPriceFoundException {
+                List<Trip> tripsBYPrice = tripRepo.FindTripByPriceRange(rangeFrom,rangeTo);
+        if(tripsBYPrice.isEmpty()){
+        throw new NoTripByPriceFoundException();
+        }
+        return tripsBYPrice;
         }
 }
