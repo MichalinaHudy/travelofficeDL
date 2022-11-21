@@ -31,7 +31,7 @@ public class TripService {
 
         }
 
-        public List<Trip> getTripByValue(double rangeFrom, double rangeTo) throws NoTripByThisValue, NoTripByThisValue {
+        public List<Trip> getTripByValue(double rangeFrom, double rangeTo) throws  NoTripByPriceFoundException, NoTripByThisValue {
                 if (rangeFrom > rangeTo) {
                         throw new NoTripByThisValue("Podano zły zakres");
                 }

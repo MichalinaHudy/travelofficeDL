@@ -22,16 +22,17 @@ public class CustomerController {
         return ResponseEntity.created(null).build();
     }
 
-    @GetMapping(path = "/customers", produces = "application/json")
-    public List<Customer> customers() {
-//        Customer jankowalski = new Customer();
-//        jankowalski.setFirstnameLastname("Jan Kowalski");
-//        jankowalski.setAddress("Katowice");
-//        Customer annakowal = new Customer();
-//        annakowal.setFirstnameLastname("Anna Kowal");
-//        annakowal.setAddress("Katowice");
-//        return List.of(jankowalski, annakowal);
-        return customerService.getAllCustomers();
+    @GetMapping(path = "/customersByFirstLastName", produces = "application/json")
+    public List<Customer> customers(@RequestParam(name = "customersByFirstLastName", required = false) String customersByFirstLastName) {
+        System.out.println("Zapytanie o fragment iemienia nazwiska o wartosci: "+customersByFirstLastName);
+        return customerService.getAllCustomers(customersByFirstLastName);
+    }
+
+    @GetMapping(path = "/customersByAddres", produces = "application/json")
+    public List<Customer> customers2(@RequestParam(name = "customerByAddres",required = false)String customerByAddres){
+        System.out.println("Wyniki wyszukiwania po adresie"+customerByAddres);
+        return customerService.getAllCustomers(customerByAddres);
+
     }
 
     @GetMapping(path = "/customers/{customerId}", produces = "application/json")

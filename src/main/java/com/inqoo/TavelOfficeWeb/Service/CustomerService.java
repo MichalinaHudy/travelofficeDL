@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CustomerService {
 
@@ -15,7 +17,18 @@ public class CustomerService {
     public void saveCustomer(Customer customer) {customerRepo.saveCustomer(customer);
     }
 
-    public List<Customer> getAllCustomers() { return customerRepo.getAllCustomers();
+    public List<Customer> getAllCustomers(String customersByFirstLastName) {
+        List<Customer> result = CustomerRepo.getAllCustomers();
+        if(customersByFirstLastName !=null){
+            result = result.stream()
+                    .filter(c->c.getFirstnameLastname().contains(customersByFirstLastName))
+                    .collect(Collectors.toList());
+        }
+        return result;
+    }
+
+    public List<Customer>getAllCustomers2  (String customerByAddres){
+
     }
 }
 
