@@ -26,6 +26,7 @@ public class CustomerController {
     public List<Customer> customers(@RequestParam(name = "customersByFirstLastName", required = false) String customersByFirstLastName) {
         System.out.println("Zapytanie o fragment iemienia nazwiska o wartosci: "+customersByFirstLastName);
         return customerService.getAllCustomers(customersByFirstLastName);
+
     }
 
     @GetMapping(path = "/customersByAddres", produces = "application/json")

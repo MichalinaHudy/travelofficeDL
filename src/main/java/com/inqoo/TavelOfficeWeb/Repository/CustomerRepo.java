@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class CustomerRepo {
 
@@ -17,6 +19,8 @@ public class CustomerRepo {
 
 
     public static List<Customer> getAllCustomers() { return customers;}
+    public static List<Customer> getAllCustomersBYAddres() { return customers;}
+
 
 
     @PostConstruct
