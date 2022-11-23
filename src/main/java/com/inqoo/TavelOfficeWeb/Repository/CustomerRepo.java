@@ -1,6 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Repository;
 
 import com.inqoo.TavelOfficeWeb.Model.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -16,10 +17,10 @@ public class CustomerRepo {
     public static void saveCustomer(Customer customer) {
         customers.add(customer);
     } // logikę biznesową
-
+    @Autowired
+    private TripRepo tripRepo;
 
     public static List<Customer> getAllCustomers() { return customers;}
-    public static List<Customer> getAllCustomersBYAddres() { return customers;}
 
 
 
@@ -28,9 +29,7 @@ public class CustomerRepo {
         Customer cus1 = new Customer();
         cus1.setFirstnameLastname("Jan Kowalski");
         cus1.setAddress("Opole, ul. Niemodlińska 21");
-//        cus1.setTrip(cus1.getTrip());
-//        cus1.getTrip();
-//        cus1.setTrip(Trip.c1);
+        cus1.setTrip(tripRepo.createTrips());    //////////////////////dopisać wycieczkiiii!!!!!
 
         Customer cus2 = new Customer();
         cus2.setFirstnameLastname("Jan Nowak");

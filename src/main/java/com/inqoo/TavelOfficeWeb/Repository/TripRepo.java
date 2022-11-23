@@ -18,7 +18,7 @@ public class TripRepo {
             trips.add(trip);
         } // logikę biznesową
 
-        public static List<Trip> getAllTrips() { return trips;}
+        public static List<Trip>  getAllTrips() { return trips;}
         public List<Trip> findTripsByPriceRange(double rangeFrom, double rangeTo){
         return trips.stream()
                 .filter(t ->t.getPrice()>rangeFrom)
