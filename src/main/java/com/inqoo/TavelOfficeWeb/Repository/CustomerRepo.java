@@ -27,9 +27,11 @@ public class CustomerRepo {
 
     @PostConstruct
     public void createCustomer() {
+//        List<Trip> allTrips = tripRepo.getAllTrips();
         Customer customer1 = new Customer();
         customer1.setFirstnameLastname("Jan Kowalski");
         customer1.setAddress("Opole, ul. Niemodlińska 21");
+        customer1.setTrip(tripRepo.findByDestination("Sosnowiec"));
         //cus1.getTrip(tripRepo.createTrips(trip););
         //////////////////////dopisać wycieczkiiii!!!!!
         //cus1.setTrip(tripRepo.createTrips(););
@@ -52,7 +54,7 @@ public class CustomerRepo {
         cus3.setAddress("Opole, ul. Niemodlińska 23");
         TripRepo tripRepo1 = new TripRepo();
 
-        cus3.getTrip(toString(tripRepo.createTrips(c3)));
+//        cus3.getTrip(toString(tripRepo.createTrips(c3)));
 
 
         Customer cus4 = new Customer();

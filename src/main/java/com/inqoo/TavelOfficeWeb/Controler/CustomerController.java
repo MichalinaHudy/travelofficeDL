@@ -25,7 +25,7 @@ public class CustomerController {
     @GetMapping(path = "/search", produces = "application/json")
     public List<Customer> customers(@RequestParam(name = "customersByFirstLastName", required = false) String customersByFirstLastName,
                                     @RequestParam(name = "customersByAddres", required = false) String customersByAddres,
-                                    @RequestParam(name = "customersWithNoTrip", required = false) String customersWithNoTrip) {
+                                    @RequestParam(name = "customersWithNoTrip", required = false) Boolean customersWithNoTrip) {
         return customerService.getAllCustomers(customersByFirstLastName, customersByAddres, customersWithNoTrip);
 
     }

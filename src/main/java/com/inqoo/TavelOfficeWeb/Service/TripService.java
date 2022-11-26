@@ -20,14 +20,14 @@ public class TripService {
         } // logikę biznesową
 
         public List<Trip> getAllCities(String tripFragment) {
-                List<Trip> result = TripRepo.getAllTrips();
-                if (tripFragment != null) {
-                        result = result.stream()
-                                .filter(c -> c.getDestination().contains(tripFragment))
-                                .collect(Collectors.toList());
-                }
-
-                return result;
+//                List<Trip> result = TripRepo.getAllTrips();
+//                if (tripFragment != null) {
+//                        result = result.stream()
+//                                .filter(c -> c.getDestination().contains(tripFragment))
+//                                .collect(Collectors.toList());
+//                }
+//
+                return null;
 
         }
 

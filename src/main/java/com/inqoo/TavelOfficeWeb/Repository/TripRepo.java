@@ -12,21 +12,25 @@ import java.util.stream.Collectors;
 
 @Repository
 public class TripRepo {
-@Autowired
-        private Trip trip;
-        public static List<Trip> trips = new ArrayList<>(); // dane
+        public List<Trip> trips = new ArrayList<>(); // dane
 
         public void saveTrip(Trip trip) {
             trips.add(trip);
         } // logikę biznesową
 
-        public static List<Trip>  getAllTrips() { return trips;}
+        public List<Trip>  getAllTrips() { return trips;}
         public List<Trip> findTripsByPriceRange(double rangeFrom, double rangeTo){
         return trips.stream()
                 .filter(t ->t.getPrice()>rangeFrom)
                 .filter(t->t.getPrice()<rangeTo)
                 .collect(Collectors.toList());
 
+        }
+
+        public Trip findByDestination(String destination) {
+                return trips.stream()
+                        .filter( t -> t.getDestination().equals(destination))
+                        .findFirst().orElseThrow();
         }
         @PostConstruct
 
