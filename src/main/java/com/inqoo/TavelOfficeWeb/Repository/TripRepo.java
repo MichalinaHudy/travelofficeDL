@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 @Repository
 public class TripRepo {
-        public List<Trip> trips = new ArrayList<>(); // dane
+        public static List<Trip> trips = new ArrayList<>(); // dane
 
         public void saveTrip(Trip trip) {
             trips.add(trip);
         } // logikę biznesową
 
-        public List<Trip>  getAllTrips() { return trips;}
+        public static List<Trip>  getAllTrips() { return trips;}
         public List<Trip> findTripsByPriceRange(double rangeFrom, double rangeTo){
         return trips.stream()
                 .filter(t ->t.getPrice()>rangeFrom)

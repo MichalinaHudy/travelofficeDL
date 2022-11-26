@@ -3,6 +3,7 @@ package com.inqoo.TavelOfficeWeb.Service;
 import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByThisValue;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
+import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepo;
 import com.inqoo.TavelOfficeWeb.Repository.TripRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,19 +15,21 @@ import java.util.stream.Collectors;
 public class TripService {
         @Autowired
         private TripRepo tripRepo;
+        @Autowired
+        private TripJpaRepo tripRepository;
 
         public void saveTrip(Trip trip) {
                 tripRepo.saveTrip(trip);
         } // logikę biznesową
 
         public List<Trip> getAllCities(String tripFragment) {
-//                List<Trip> result = TripRepo.getAllTrips();
-//                if (tripFragment != null) {
-//                        result = result.stream()
-//                                .filter(c -> c.getDestination().contains(tripFragment))
-//                                .collect(Collectors.toList());
-//                }
-//
+                List<Trip> result = TripRepo.getAllTrips();
+                if (tripFragment != null) {
+                        result = result.stream()
+                                .filter(c -> c.getDestination().contains(tripFragment))
+                                .collect(Collectors.toList());
+                }
+
                 return null;
 
         }

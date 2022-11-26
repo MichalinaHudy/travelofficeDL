@@ -1,16 +1,21 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
-/*
-    Ta klasa ma:
-    - przechowywać informacje o wycieczce (zakres i typy wg opisu)
-    - udostępniać możliwość wyświetlania informacji o wycieczce
- */
+@Entity
 public class Trip {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
+    @Column(name = "trip_start")
     private LocalDate start;
+    @Column(name = "trip_end")
     private LocalDate end;
+    @Column(name = "trip_destination",length = 40)
     private String destination;
+    @Column(name = "price_eur")
     private double priceEur;
 
     @Override
