@@ -4,7 +4,6 @@ import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByThisValue;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepo;
-import com.inqoo.TavelOfficeWeb.Repository.TripRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ public class TripService {
                 tripRepository.save(trip);
         }
 
-        public List<Trip> getAllCities(String tripFragment) {
+        public List<Trip> getAllTrips(String tripFragment) {
                 List<Trip> result = tripRepository.findAll();
                 if (tripFragment != null) {
                         result = result.stream()
@@ -32,7 +31,7 @@ public class TripService {
                 return result;
 
         }
-
+                //todo: dorobić
         public List<Trip> getTripByValue(double rangeFrom, double rangeTo) throws
                 NoTripByPriceFoundException, NoTripByThisValue {
 //                if (rangeFrom > rangeTo) {

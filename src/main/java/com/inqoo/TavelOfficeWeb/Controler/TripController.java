@@ -19,7 +19,7 @@ public class TripController {
     private TripService tripService;
 
     @PostMapping(path = "/trips", consumes = "application/json")
-    public ResponseEntity createCity(@RequestBody Trip trip) {
+    public ResponseEntity createTrip(@RequestBody Trip trip) {
         System.out.println("Wycieczka do: " + trip);
         tripService.saveTrip(trip);
         return ResponseEntity.created(null).build();
@@ -28,7 +28,7 @@ public class TripController {
     @GetMapping(path = "/trips", produces = "application/json")
     public List<Trip> trips(@RequestParam(name = "tripFragment", required = false) String tripFragment) {
         System.out.println("Zapytanie zawierało parametr 'tripFragment' o wartości: " + tripFragment);
-        return tripService.getAllCities(tripFragment);
+        return tripService.getAllTrips(tripFragment);
     }
 
     @GetMapping(path = "/tripsByPrice", produces = "application/json")
