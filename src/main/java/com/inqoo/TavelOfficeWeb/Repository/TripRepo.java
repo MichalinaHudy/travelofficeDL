@@ -1,6 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Repository;
 
 import com.inqoo.TavelOfficeWeb.Model.Trip;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +12,9 @@ import java.util.stream.Collectors;
 
 @Repository
 public class TripRepo {
-
-        private static List<Trip> trips = new ArrayList<>(); // dane
+@Autowired
+        private Trip trip;
+        public static List<Trip> trips = new ArrayList<>(); // dane
 
         public void saveTrip(Trip trip) {
             trips.add(trip);
@@ -29,11 +31,7 @@ public class TripRepo {
         @PostConstruct
 
         public void createTrips() {
-                Trip c1 = new Trip();
-                c1.setDestination("oslo");
-                c1.setEnd(LocalDate.of(2022, 12, 2));
-                c1.setStart(LocalDate.of(2022, 11, 21));
-                c1.setPriceEur(1400);
+
 
                 Trip c2 = new Trip();
                 c2.setDestination("Sosnowiec");
@@ -41,13 +39,14 @@ public class TripRepo {
                 c2.setStart(LocalDate.of(2022, 11, 21));
                 c2.setPriceEur(1500);
 
+
                 Trip c3 = new Trip();
                 c3.setDestination("Londyn");
                 c3.setEnd(LocalDate.of(2022, 12, 2));
                 c3.setStart(LocalDate.of(2022, 11, 21));
                 c3.setPriceEur(1600);
 
-                trips.add(c1);
+                //trips.add(trip1);
                 trips.add(c2);
                 trips.add(c3);
         }

@@ -26,7 +26,7 @@ public class CustomerController {
     public List<Customer> customers(@RequestParam(name = "customersByFirstLastName", required = false) String customersByFirstLastName,
                                     @RequestParam(name = "customersByAddres", required = false) String customersByAddres,
                                     @RequestParam(name = "customersWithNoTrip", required = false) String customersWithNoTrip) {
-        return customerService.getAllCustomers(customersByFirstLastName,customersByAddres,customersWithNoTrip);
+        return customerService.getAllCustomers(customersByFirstLastName, customersByAddres, customersWithNoTrip);
 
     }
 
