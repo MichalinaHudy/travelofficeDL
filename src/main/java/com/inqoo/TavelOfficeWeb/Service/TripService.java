@@ -18,11 +18,11 @@ public class TripService {
         private TripJpaRepo tripRepository;
 
         public void saveTrip(Trip trip) {
-                tripRepository.saveTrip(trip);
+                tripRepository.save(trip);
         } // logikę biznesową
 
         public List<Trip> getAllCities(String tripFragment) {
-                List<Trip> result = tripRepository.getAllTrips();
+                List<Trip> result = tripRepository.findAll();
                 if (tripFragment != null) {
                         result = result.stream()
                                 .filter(c -> c.getDestination().contains(tripFragment))
