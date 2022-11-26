@@ -13,17 +13,16 @@ import java.util.stream.Collectors;
 
 @Service
 public class TripService {
-        @Autowired
-        private TripRepo tripRepo;
+
         @Autowired
         private TripJpaRepo tripRepository;
 
         public void saveTrip(Trip trip) {
-                tripRepo.saveTrip(trip);
+                tripRepository.saveTrip(trip);
         } // logikę biznesową
 
         public List<Trip> getAllCities(String tripFragment) {
-                List<Trip> result = TripRepo.getAllTrips();
+                List<Trip> result = tripRepository.getAllTrips();
                 if (tripFragment != null) {
                         result = result.stream()
                                 .filter(c -> c.getDestination().contains(tripFragment))
@@ -38,7 +37,7 @@ public class TripService {
                 if (rangeFrom > rangeTo) {
                         throw new NoTripByThisValue("Podano zły zakres");
                 }
-                        List<Trip> tripsByValue = tripRepo.findTripsByPriceRange(rangeFrom, rangeTo);
+                        List<Trip> tripsByValue = tripRepository.findTripsByPriceRange(rangeFrom, rangeTo);
 
                         if (tripsByValue.isEmpty()) {
                                 throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);

@@ -9,5 +9,7 @@ public interface TripJpaRepo extends JpaRepository<Trip, Integer> {
     List<Trip> findTripsByPriceRange(double from, double to);
 
 
+    void saveTrip(Trip trip);
 
+    List<Trip> getAllTrips();
 }
