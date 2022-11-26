@@ -19,7 +19,7 @@ public class TripService {
 
         public void saveTrip(Trip trip) {
                 tripRepository.save(trip);
-        } // logikę biznesową
+        }
 
         public List<Trip> getAllCities(String tripFragment) {
                 List<Trip> result = tripRepository.findAll();
@@ -29,21 +29,23 @@ public class TripService {
                                 .collect(Collectors.toList());
                 }
 
-                return null;
+                return result;
 
         }
 
-        public List<Trip> getTripByValue(double rangeFrom, double rangeTo) throws  NoTripByPriceFoundException, NoTripByThisValue {
-                if (rangeFrom > rangeTo) {
-                        throw new NoTripByThisValue("Podano zły zakres");
-                }
-                        List<Trip> tripsByValue = tripRepository.findTripsByPriceRange(rangeFrom, rangeTo);
+        public List<Trip> getTripByValue(double rangeFrom, double rangeTo) throws
+                NoTripByPriceFoundException, NoTripByThisValue {
+//                if (rangeFrom > rangeTo) {
+//                        throw new NoTripByThisValue("Podano zły zakres");
+//                }
+//                        List<Trip> tripsByValue = tripRepository.findTripsByPriceRange(rangeFrom, rangeTo);
+//
+//                        if (tripsByValue.isEmpty()) {
+//                                throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);
+//                        }
+//                        return tripsByValue;
 
-                        if (tripsByValue.isEmpty()) {
-                                throw new NoTripByPriceFoundException("brak wyników dla wyszukiwania " + rangeFrom + " i " + rangeTo);
-                        }
-                        return tripsByValue;
-
+                return null;
                 }
 
         }
