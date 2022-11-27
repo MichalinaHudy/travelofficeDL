@@ -20,7 +20,7 @@ public class Customer {
     private String firstnameLastname;
     @Column(name = "addres")
     private String address;
-    @Column(name = "trip_start")
+
 //   @OneToMany(cascade = CascadeType.PERSIST)
 //   @JoinColumn(name = "trip_id")
 //   private List<Trip> trips;
