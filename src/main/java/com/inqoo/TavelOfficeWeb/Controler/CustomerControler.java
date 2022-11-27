@@ -1,9 +1,9 @@
 package com.inqoo.TavelOfficeWeb.Controler;
 
-
 import com.inqoo.TavelOfficeWeb.Model.Customer;
 import com.inqoo.TavelOfficeWeb.Service.CustomerService;
 
+import com.inqoo.TavelOfficeWeb.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +16,9 @@ import java.util.List;
 public class CustomerControler {
     @Autowired
     private CustomerService customerService;
-//    @PostMapping(path = "/customers", consumes = "application/json")
-//    public ResponseEntity createCustomer(@RequestBody Customer customer) {
-//        customerService.saveCustomer(customer);
-//        return ResponseEntity.created(null).build();
-//    }
 
     @GetMapping(path = "/customers", produces = "application/json")
     public List<Customer> customers() {
-
         return customerService.getAllCustomers();
     }
 
@@ -38,8 +32,7 @@ public class CustomerControler {
 
     @PostMapping(path = "/customers", consumes = "application/json")
     public ResponseEntity createNewTrip(@RequestBody Customer customer) {
-        customerService.save(customer);
-
+        customerService.saveCustomer(customer);
         URI savedCustomerId = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(customer.getId())
@@ -47,8 +40,13 @@ public class CustomerControler {
         // powinniśmy zwrócić URL właśnie zapisanego miasta
         return ResponseEntity.created(savedCustomerId).build();
     }
-    @GetMapping(value = "/customers", produces = "application/json")
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    String , String , boolean trip
+    @GetMapping(path = "/getBY", produces = "application/json")
+    public List<Customer> getBY(@RequestParam String firstLastNameFragment, @RequestParam String addressFragment,@RequestParam boolean trip ) {
+        try {
+            return tripService.getByPrice(priceFrom, priceTo);
+        } catch (com.inqoo.TavelOfficeWeb.exception.NoTripFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

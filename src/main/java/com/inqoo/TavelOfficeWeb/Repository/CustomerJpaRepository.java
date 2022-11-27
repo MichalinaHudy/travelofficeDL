@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CustomerJpaRepository extends JpaRepository<Trip,Integer> {
+public interface CustomerJpaRepository extends JpaRepository<Customer,Integer> {
 
-    void saveCustmer(Customer customer);
+List<Customer>findAllByAddress(String addresFragment);
+List<Customer>findAllByFirstnameLastname(String firstLastNameFragment);
 
-    List<Customer> getAllCustomers();
+
+//
+
+
 }
