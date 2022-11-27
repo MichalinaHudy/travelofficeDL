@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -25,18 +26,24 @@ public class CustomerService {
 
     public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean trip) {
         // 1 dokładne odwzorowanie, tj. where cos = parametr
-        Customer exampleCity = Customer
-                .builder()
-                .firstnameLastname(firstLastNameFragment) // dokładne odwzorowanie - nie contains !
-                .address(addressFragment) // dokładna liczba
-                .build();
+        if (firstLastNameFragment != null || addressFragment != null) {
+            Customer exampleCity = Customer
+                    .builder()
+                    .firstnameLastname(firstLastNameFragment) // dokładne odwzorowanie - nie contains !
+                    .address(addressFragment) // dokładna liczba
+                    .build();
 
-        return customerJpaRepository.findAll(Example.of(exampleCity));
+            return customerJpaRepository.findAll(Example.of(exampleCity));
+        }
 
+        if (trip == true) {
+            return customerJpaRepository.findAllByTripsIsNull(trip);
 
+        }
 
-
-
+    return null;
     }
-
 }
+
+
+

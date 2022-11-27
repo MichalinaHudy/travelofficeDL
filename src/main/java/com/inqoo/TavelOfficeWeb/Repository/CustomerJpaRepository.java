@@ -11,7 +11,7 @@ public interface CustomerJpaRepository extends JpaRepository<Customer,Integer>, 
 //List<Customer>findAllByAddressContains(String addresFragment);
 List<Customer>findAllByFirstnameLastnameContainsAndAddressContains(String firstLastNameFragment, String addresFragment);
 
-//List<Customer>findAllByTripsIsNull(boolean notrip);
+List<Customer>findAllByTripsIsNull(boolean notrip);
 //
 
 //

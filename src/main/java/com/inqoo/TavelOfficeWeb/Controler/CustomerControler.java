@@ -43,12 +43,4 @@ public class CustomerControler {
         return ResponseEntity.created(savedCustomerId).build();
     }
 
-//    @GetMapping(path = "/getBY", produces = "application/json")
-//    public List<Customer> getBY(@RequestParam String firstLastNameFragment, @RequestParam String addressFragment,@RequestParam boolean trip ) {
-//        try {
-//            return customerService.getBY(firstLastNameFragment, addressFragment);
-//        } catch (com.inqoo.TavelOfficeWeb.exception.NoTripFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }
