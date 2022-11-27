@@ -8,10 +8,10 @@ import javax.persistence.Embeddable;
 @Data
 @Embeddable
 public class CustomerAddressDetails {
-    private String Country;
+    private String country;
     private String province;
     private String road;
     private String houseNumber;
-    private String ZIPcode;
+    private String zipCode;
 
 }

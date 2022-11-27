@@ -8,12 +8,12 @@ import java.time.LocalDate;
 @Embeddable
 public class CustomerNameDetails {
 
-    public  String Firstname;
-    private String Lastname;
-    private int Age;
-    private LocalDate DateOfBirth;
-    private String Pesel;
-    private String Phone;
+    public  String firstname;
+    private String lastname;
+    private int age;
+    private LocalDate dateOfBirth;
+    private String pesel;
+    private String phone;
 
 //    public void fnLn(){
 //        StringBuilder stringBuilder = new StringBuilder();
