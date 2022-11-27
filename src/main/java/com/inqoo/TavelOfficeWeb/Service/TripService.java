@@ -1,5 +1,6 @@
 package com.inqoo.TavelOfficeWeb.Service;
 
+import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepository;
 import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
 import com.inqoo.TavelOfficeWeb.Trip;
@@ -19,11 +20,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class TripService {
-//    @Autowired
-//    private TripRepository tripRepository;
+
 
         @Autowired
         private TripJpaRepository tripRepository;
+        @Autowired
+        private CustomerJpaRepository customerJpaRepository;
 
         public void saveTrip(Trip trip) {
                 tripRepository.save(trip);

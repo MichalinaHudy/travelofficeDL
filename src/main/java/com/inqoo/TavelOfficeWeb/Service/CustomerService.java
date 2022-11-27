@@ -12,11 +12,15 @@ import java.util.List;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+
     public void saveCustomer(Customer customer) {
         customerRepository.saveCustmer(customer);
     } // logikę biznesową
 
     public List<Customer> getAllCustomers() {
         return customerRepository.getAllCustomers();
+    }
+
+    public void save(Customer customer) {
     }
 }

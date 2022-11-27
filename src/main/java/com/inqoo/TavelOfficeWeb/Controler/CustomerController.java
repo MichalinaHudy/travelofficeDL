@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.Controller;
+package com.inqoo.TavelOfficeWeb.Controler;
 
 
 import com.inqoo.TavelOfficeWeb.Model.Customer;
@@ -7,7 +7,9 @@ import com.inqoo.TavelOfficeWeb.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,4 +36,19 @@ public class CustomerController {
 
     }
 
+    @PostMapping(path = "/customer", consumes = "application/json")
+    public ResponseEntity createNewCountry(@RequestBody Customer customer) {
+        customerService.save(customer);
+
+        URI savedCustomerId = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(customer.getId())
+                .toUri();
+        // powinniśmy zwrócić URL właśnie zapisanego miasta
+        return ResponseEntity.created(savedCustomerId).build();
+    }
+    @GetMapping(value = "/customer", produces = "application/json")
+    public List<Customer> getAll() {
+        return customerService.getAllCustomers();
+    }
 }

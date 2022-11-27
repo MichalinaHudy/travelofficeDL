@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -35,9 +36,7 @@ public class Customer {
                 '}';
     }
 
-    // metoda do przypisania wycieczki do klienta
-    // użycie metody do przypisania daje możliwości np walidacji
-    void assignTrip(Trip _trip) { trips = (List<Trip>) _trip; // argumentem jest wycieczka, którą chcę przypisać
+    void assignTrip(Trip _trip) { trips = trips; // argumentem jest wycieczka, którą chcę przypisać
     }
 
 //    void printInfo() {
@@ -55,27 +54,27 @@ public class Customer {
         return other.address == address;
     }
 
-    public String getFirstnameLastname() {
-        return firstnameLastname;
-    }
-
-    public void setFirstnameLastname(String firstnameLastname) {
-        this.firstnameLastname = firstnameLastname;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//    public String getFirstnameLastname() {
+//        return firstnameLastname;
+//    }
+//
+//    public void setFirstnameLastname(String firstnameLastname) {
+//        this.firstnameLastname = firstnameLastname;
+//    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
 
     public List<Trip> getTrip() {
         return trips;
     }
 
     public void setTrip(Trip trip) {
-        this.trips = (List<Trip>) trip;
+        this.trips = Collections.singletonList(trip);
     }
 }
