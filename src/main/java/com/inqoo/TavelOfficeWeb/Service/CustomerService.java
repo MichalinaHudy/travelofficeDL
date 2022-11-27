@@ -1,6 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Service;
 
 import com.inqoo.TavelOfficeWeb.Model.Customer;
+import com.inqoo.TavelOfficeWeb.Model.CustomerNameDetails;
 import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,47 +17,38 @@ import java.util.stream.Collectors;
 public class CustomerService {
     @Autowired
     private CustomerJpaRepository customerJpaRepository;
-
+    //private CustomerNameDetails customerNameDetails;
     public void saveCustomer(Customer customer) {
         customerJpaRepository.save(customer);
     } // logikę biznesową
 
-//    public List<Customer> getAllCustomers() {
-//        return customerJpaRepository.findAll();
-//    }
 
-    public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean trip) {
-        // 1 dokładne odwzorowanie, tj. where cos = parametr
+    public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean withoutAnyTrip) {
 
-        if (firstLastNameFragment != null || addressFragment != null) {
-            Customer exampleCustomer = Customer.builder().build();
-//                    .builder()
-//                    .firstnameLastname(firstLastNameFragment) // dokładne odwzorowanie - nie contains !
-//                    .address(addressFragment) // dokładna liczba
-//                    .build();
-//            return customerJpaRepository.findAll(Example.of(exampleCustomer));
-            ExampleMatcher firstLastNameFragmentMatcher = ExampleMatcher
-                    .matchingAll()
-                    .withMatcher("address",ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
-                    .withMatcher("firstnameLastname", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+        Customer exampleCustomer = Customer.builder()
+                //.id.Firstname
+                //.customerNameDetails.Firstname
+                //.address(addressFragment)
+                .build();
 
-            List<Customer> result = customerJpaRepository.findAll(Example.of(exampleCustomer, firstLastNameFragmentMatcher));
-//        if (){
-//            Customer exampleCustomer = Customer;
-//            ExampleMatcher addressFragmentMatcher = ExampleMatcher
-//                    .matchingAll()
-//                    .withMatcher("address", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
-//
-//            customerJpaRepository.findAll(Example.of(exampleCustomer, addressFragmentMatcher));
-//        }
-            if (trip == true) {
+        ExampleMatcher firstLastNameFragmentMatcher = ExampleMatcher
+                .matchingAll()
+                .withMatcher("address",ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+                .withMatcher("Firstname", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+
+        List<Customer> result = customerJpaRepository.findAll(Example.of(exampleCustomer, firstLastNameFragmentMatcher));
+        if (withoutAnyTrip != null) {
+            if (withoutAnyTrip) {
                 result = result.stream()
-                        .filter(e -> e.getTrips() != null)
+                        .filter(e -> e.getTrips() == null || e.getTrips().isEmpty())
+                        .collect(Collectors.toList());
+            } else if (!withoutAnyTrip) {
+                result = result.stream()
+                        .filter(e -> e.getTrips() != null && !e.getTrips().isEmpty())
                         .collect(Collectors.toList());
             }
-            return result;
         }
-    return null;
+        return result;
 
     }
 
