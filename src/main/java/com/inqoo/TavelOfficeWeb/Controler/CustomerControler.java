@@ -13,14 +13,14 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-public class CustomerController {
+public class CustomerControler {
     @Autowired
     private CustomerService customerService;
-    @PostMapping(path = "/customers", consumes = "application/json")
-    public ResponseEntity createCustomer(@RequestBody Customer customer) {
-        customerService.saveCustomer(customer);
-        return ResponseEntity.created(null).build();
-    }
+//    @PostMapping(path = "/customers", consumes = "application/json")
+//    public ResponseEntity createCustomer(@RequestBody Customer customer) {
+//        customerService.saveCustomer(customer);
+//        return ResponseEntity.created(null).build();
+//    }
 
     @GetMapping(path = "/customers", produces = "application/json")
     public List<Customer> customers() {
@@ -36,8 +36,8 @@ public class CustomerController {
 
     }
 
-    @PostMapping(path = "/customer", consumes = "application/json")
-    public ResponseEntity createNewCountry(@RequestBody Customer customer) {
+    @PostMapping(path = "/customers", consumes = "application/json")
+    public ResponseEntity createNewTrip(@RequestBody Customer customer) {
         customerService.save(customer);
 
         URI savedCustomerId = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -47,8 +47,8 @@ public class CustomerController {
         // powinniśmy zwrócić URL właśnie zapisanego miasta
         return ResponseEntity.created(savedCustomerId).build();
     }
-    @GetMapping(value = "/customer", produces = "application/json")
-    public List<Customer> getAll() {
+    @GetMapping(value = "/customers", produces = "application/json")
+    public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 }

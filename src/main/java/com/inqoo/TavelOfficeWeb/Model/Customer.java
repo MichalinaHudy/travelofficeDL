@@ -1,6 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
 import com.inqoo.TavelOfficeWeb.Trip;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +25,7 @@ public class Customer {
     private String address;
 
    @OneToMany(cascade = CascadeType.PERSIST)
-   @JoinColumn(name = "trip_id")
+   @JoinColumn(name = "customer_id")
    private List<Trip> trips;
 
 
@@ -36,8 +38,8 @@ public class Customer {
                 '}';
     }
 
-    void assignTrip(Trip _trip) { trips = trips; // argumentem jest wycieczka, którą chcę przypisać
-    }
+//    void assignTrip(Trip _trip) { trips = trips; // argumentem jest wycieczka, którą chcę przypisać
+//    }
 
 //    void printInfo() {
 //        System.out.println("Customer: "+firstnameLastname+", address: "+address);
@@ -46,13 +48,13 @@ public class Customer {
 //        }
 //    }
 
-    public int hashCode() {
-        return address.hashCode();
-    }
-    public boolean equals(Object o) {
-        Customer other = (Customer) o;
-        return other.address == address;
-    }
+//    public int hashCode() {
+//        return address.hashCode();
+//    }
+//    public boolean equals(Object o) {
+//        Customer other = (Customer) o;
+//        return other.address == address;
+//    }
 
 //    public String getFirstnameLastname() {
 //        return firstnameLastname;
@@ -70,11 +72,11 @@ public class Customer {
 //        this.address = address;
 //    }
 
-    public List<Trip> getTrip() {
-        return trips;
-    }
-
-    public void setTrip(Trip trip) {
-        this.trips = Collections.singletonList(trip);
-    }
+//    public List<Trip> getTrip() {
+//        return trips;
+//    }
+//
+//    public void setTrip(Trip trip) {
+//        this.trips = Collections.singletonList(trip);
+//    }
 }

@@ -23,33 +23,33 @@ public class TripService {
 
 
         @Autowired
-        private TripJpaRepository tripRepository;
+        private TripJpaRepository tripJpaRepository;
         @Autowired
         private CustomerJpaRepository customerJpaRepository;
 
         public void saveTrip(Trip trip) {
-                tripRepository.save(trip);
+                tripJpaRepository.save(trip);
         } // logikę biznesową
         public void removeTripById(Integer id) {
-                tripRepository.deleteById(id);
+                tripJpaRepository.deleteById(id);
         }
         public void updateTrip(Integer id, Trip tripToUpdate) {
                 if (id != tripToUpdate.getId()){
                         throw new RuntimeException("Bad request");
                 }
-                Optional<Trip> maybeTrip = tripRepository.findById(id);
+                Optional<Trip> maybeTrip = tripJpaRepository.findById(id);
                 if (maybeTrip.isEmpty()) { // pobieramy wg id żeby upewnić się, że to będzie aktualizacja
                         // wyrzucenie wyjątku !
                         return;
                 }
-                tripRepository.save(tripToUpdate);
+                tripJpaRepository.save(tripToUpdate);
         }
         public List<Trip> getAllTrips() {
-                return tripRepository.findAll();
+                return tripJpaRepository.findAll();
         }
 
         public List<Trip> getAllTrips(String nameFragment) {
-                List<Trip> result = tripRepository.findAll();
+                List<Trip> result = tripJpaRepository.findAll();
                 if (nameFragment != null) {
                         result = result.stream()
                                 .filter(c -> c.getDestination().contains(nameFragment))
@@ -61,7 +61,7 @@ public class TripService {
                 if (priceFrom>priceTo){
                         throw new WrongParameters("Wrong input data  "+priceFrom+" and "+priceTo);
                 }
-                List<Trip> tripsByPrice = tripRepository.findAllByPriceEurBetween(priceFrom, priceTo);
+                List<Trip> tripsByPrice = tripJpaRepository.findAllByPriceEurBetween(priceFrom, priceTo);
 
                 if (tripsByPrice.isEmpty()) {
                         throw new NoTripFoundException("No Trip with price between "+priceFrom+" and "+priceTo);
