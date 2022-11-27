@@ -21,36 +21,31 @@ public class Customer {
     @Column(name = "addres")
     private String address;
 
-//   @OneToMany(cascade = CascadeType.PERSIST)
-//   @JoinColumn(name = "trip_id")
-//   private List<Trip> trips;
+   @OneToMany(cascade = CascadeType.PERSIST)
+   @JoinColumn(name = "trip_id")
+   private List<Trip> trips;
 
-
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "trips_id")
-    private Trip trip;
 
     @Override
     public String toString() {
         return "Customer{" +
                 "firstnameLastname='" + firstnameLastname + '\'' +
                 ", address='" + address + '\'' +
-                ", trip=" + (trip != null ? trip : "") +
+                ", trip=" + (trips != null ? trips : "") +
                 '}';
     }
 
     // metoda do przypisania wycieczki do klienta
     // użycie metody do przypisania daje możliwości np walidacji
-    void assignTrip(Trip _trip) { // argumentem jest wycieczka, którą chcę przypisać
-        trip = _trip;
+    void assignTrip(Trip _trip) { trips = (List<Trip>) _trip; // argumentem jest wycieczka, którą chcę przypisać
     }
 
-    void printInfo() {
-        System.out.println("Customer: "+firstnameLastname+", address: "+address);
-        if ( trip != null){
-            trip.printInfo(); // PROSZĘ obiekt klasy trip, żeby się przedstawił !
-        }
-    }
+//    void printInfo() {
+//        System.out.println("Customer: "+firstnameLastname+", address: "+address);
+//        if ( trips != null){
+//            trips.printInfo(); // PROSZĘ obiekt klasy trip, żeby się przedstawił !
+//        }
+//    }
 
     public int hashCode() {
         return address.hashCode();
@@ -76,11 +71,11 @@ public class Customer {
         this.address = address;
     }
 
-    public Trip getTrip() {
-        return trip;
+    public List<Trip> getTrip() {
+        return trips;
     }
 
     public void setTrip(Trip trip) {
-        this.trip = trip;
+        this.trips = (List<Trip>) trip;
     }
 }
