@@ -5,6 +5,7 @@ import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,23 +27,39 @@ public class CustomerService {
 
     public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean trip) {
         // 1 dokładne odwzorowanie, tj. where cos = parametr
+
         if (firstLastNameFragment != null || addressFragment != null) {
-            Customer exampleCity = Customer
-                    .builder()
-                    .firstnameLastname(firstLastNameFragment) // dokładne odwzorowanie - nie contains !
-                    .address(addressFragment) // dokładna liczba
-                    .build();
+            Customer exampleCustomer = Customer.builder().build();
+//                    .builder()
+//                    .firstnameLastname(firstLastNameFragment) // dokładne odwzorowanie - nie contains !
+//                    .address(addressFragment) // dokładna liczba
+//                    .build();
+//            return customerJpaRepository.findAll(Example.of(exampleCustomer));
+            ExampleMatcher firstLastNameFragmentMatcher = ExampleMatcher
+                    .matchingAll()
+                    .withMatcher("address",ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+                    .withMatcher("firstnameLastname", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
 
-            return customerJpaRepository.findAll(Example.of(exampleCity));
+            List<Customer> result = customerJpaRepository.findAll(Example.of(exampleCustomer, firstLastNameFragmentMatcher));
+//        if (){
+//            Customer exampleCustomer = Customer;
+//            ExampleMatcher addressFragmentMatcher = ExampleMatcher
+//                    .matchingAll()
+//                    .withMatcher("address", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+//
+//            customerJpaRepository.findAll(Example.of(exampleCustomer, addressFragmentMatcher));
+//        }
+            if (trip == true) {
+                result = result.stream()
+                        .filter(e -> e.getTrips() != null)
+                        .collect(Collectors.toList());
+            }
+            return result;
         }
-
-        if (trip == true) {
-            return customerJpaRepository.findAllByTripsIsNull(trip);
-
-        }
-
     return null;
+
     }
+
 }
 
 
