@@ -10,9 +10,10 @@ public class CustomerNameDetails {
 
     public  String Firstname;
     private String Lastname;
-    private int age;
+    private int Age;
     private LocalDate DateOfBirth;
     private String Pesel;
+    private String Phone;
 
 //    public void fnLn(){
 //        StringBuilder stringBuilder = new StringBuilder();

@@ -25,6 +25,15 @@ public class Customer {
     @Embedded
     private CustomerAddressDetails customerAddressDetails;
 
+    @SuppressWarnings("JpaModelReferenceInspection") //// ukrycie wad..... do poprawy ale puki co działa...
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride( name = "firstName", column = @Column(name = "first_name")),
+            @AttributeOverride( name = "LastName", column = @Column(name = "last_name")),
+            @AttributeOverride( name = "Age", column = @Column(name = "age")),
+            @AttributeOverride( name = "DateOfBirth", column = @Column(name = "date_of_birth")),
+            @AttributeOverride( name = "Pesel", column = @Column(name = "pesel")),
+            @AttributeOverride( name = "Phone", column = @Column(name = "contact_phone"))
+    })
     private CustomerNameDetails customerNameDetails;
 }
