@@ -1,10 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
 import com.inqoo.TavelOfficeWeb.Trip;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,8 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
+
+@Builder @NoArgsConstructor  @AllArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

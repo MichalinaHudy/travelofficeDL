@@ -4,6 +4,7 @@ import com.inqoo.TavelOfficeWeb.Model.Customer;
 import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,25 +19,24 @@ public class CustomerService {
         customerJpaRepository.save(customer);
     } // logikę biznesową
 
-    public List<Customer> getAllCustomers() {
-        return customerJpaRepository.findAll();
+//    public List<Customer> getAllCustomers() {
+//        return customerJpaRepository.findAll();
+//    }
+
+    public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean trip) {
+        // 1 dokładne odwzorowanie, tj. where cos = parametr
+        Customer exampleCity = Customer
+                .builder()
+                .firstnameLastname(firstLastNameFragment) // dokładne odwzorowanie - nie contains !
+                .address(addressFragment) // dokładna liczba
+                .build();
+
+        return customerJpaRepository.findAll(Example.of(exampleCity));
+
+
+
+
+
     }
-
-    public List<Customer> getBY(String firstLastNameFragment, String addressFragment, boolean notrip) {
-        if (firstLastNameFragment != null || addressFragment != null || notrip ==true) {
-            return customerJpaRepository.findAllByFirstnameLastnameContains(firstLastNameFragment);
-            }
-//        if (addressFragment != null) {
-//            return customerJpaRepository.findAllByAddressContains(addressFragment);
-//            }
-//            if (notrip ==true){
-//                return customerJpaRepository.findAllByTripsIsNull(notrip);
-//            }
-
-
-        return customerJpaRepository.findAll();
-    }
-
-
 
 }
