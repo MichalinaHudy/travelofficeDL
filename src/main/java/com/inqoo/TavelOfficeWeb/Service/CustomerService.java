@@ -22,15 +22,15 @@ public class CustomerService {
         return customerJpaRepository.findAll();
     }
 
-    public List<Customer> getBY(String firstLastNameFragment, String addressFragment, boolean trip) {
-        if (firstLastNameFragment != null) {
-            return customerJpaRepository.findAllByFirstnameLastname(firstLastNameFragment);
-        }
-            if (addressFragment != null) {
-                return customerJpaRepository.findAllByAddress(addressFragment);
+    public List<Customer> getBY(String firstLastNameFragment, String addressFragment, boolean notrip) {
+        if (firstLastNameFragment != null || addressFragment != null || notrip ==true) {
+            return customerJpaRepository.findAllByFirstnameLastnameContains(firstLastNameFragment);
             }
-//            if (trip == null){
-//                return customerJpaRepository.findAllByAddress(addressFragment);
+//        if (addressFragment != null) {
+//            return customerJpaRepository.findAllByAddressContains(addressFragment);
+//            }
+//            if (notrip ==true){
+//                return customerJpaRepository.findAllByTripsIsNull(notrip);
 //            }
 
 

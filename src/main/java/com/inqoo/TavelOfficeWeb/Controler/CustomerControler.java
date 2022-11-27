@@ -40,11 +40,11 @@ public class CustomerControler {
         // powinniśmy zwrócić URL właśnie zapisanego miasta
         return ResponseEntity.created(savedCustomerId).build();
     }
-    String , String , boolean trip
+
     @GetMapping(path = "/getBY", produces = "application/json")
     public List<Customer> getBY(@RequestParam String firstLastNameFragment, @RequestParam String addressFragment,@RequestParam boolean trip ) {
         try {
-            return tripService.getByPrice(priceFrom, priceTo);
+            return customerService.getBY(firstLastNameFragment, addressFragment, trip);
         } catch (com.inqoo.TavelOfficeWeb.exception.NoTripFoundException e) {
             throw new RuntimeException(e);
         }

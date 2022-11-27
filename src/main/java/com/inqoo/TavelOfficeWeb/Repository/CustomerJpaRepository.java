@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface CustomerJpaRepository extends JpaRepository<Customer,Integer> {
 
-List<Customer>findAllByAddress(String addresFragment);
-List<Customer>findAllByFirstnameLastname(String firstLastNameFragment);
+//List<Customer>findAllByAddressContains(String addresFragment);
+List<Customer>findAllByFirstnameLastnameContainsAndAddressContainsAndTripsIsNull(String firstLastNameFragment,String addresFragment,boolean trip);
+
+//List<Customer>findAllByTripsIsNull(boolean notrip);
 
 
 //
