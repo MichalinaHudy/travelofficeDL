@@ -1,4 +1,6 @@
-package com.inqoo.TavelOfficeWeb.Model;
+package com.inqoo.TavelOfficeWeb.model;
+
+import com.inqoo.TavelOfficeWeb.Trip;
 
 public class DomesticTrip extends Trip {
     private double ownArrivalDiscount;
@@ -11,7 +13,7 @@ public class DomesticTrip extends Trip {
     }
 
     public double getPrice() {
-        return super.getPrice() - ownArrivalDiscount;
+        return super.getPriceEur() - ownArrivalDiscount;
     }
 
     public void setOwnArrivalDiscount(double ownArrivalDiscount) {

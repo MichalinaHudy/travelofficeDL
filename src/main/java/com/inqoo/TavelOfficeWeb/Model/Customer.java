@@ -1,8 +1,33 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
+import com.inqoo.TavelOfficeWeb.Trip;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@ToString
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "firstlastname")
     private String firstnameLastname;
+    @Column(name = "addres")
     private String address;
+    @Column(name = "trip_start")
+//   @OneToMany(cascade = CascadeType.PERSIST)
+//   @JoinColumn(name = "trip_id")
+//   private List<Trip> trips;
+
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "trips_id")
     private Trip trip;
 
     @Override

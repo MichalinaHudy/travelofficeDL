@@ -1,92 +1,78 @@
 package com.inqoo.TavelOfficeWeb.Controler;
 
-import com.inqoo.TavelOfficeWeb.Model.Exception.ErrorMsg;
-import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByPriceFoundException;
-import com.inqoo.TavelOfficeWeb.Model.Exception.NoTripByThisValue;
-import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.Service.TripService;
+import com.inqoo.TavelOfficeWeb.exception.ErrorMessage;
+import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
+import com.inqoo.TavelOfficeWeb.Trip;
+import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.time.LocalDate;
+import java.net.URI;
 import java.util.List;
 
 @RestController
 public class TripController {
+
     @Autowired
     private TripService tripService;
-
     @PostMapping(path = "/trips", consumes = "application/json")
     public ResponseEntity createTrip(@RequestBody Trip trip) {
-        System.out.println("Wycieczka do: " + trip);
         tripService.saveTrip(trip);
-        return ResponseEntity.created(null).build();
-    }
 
+        URI savedCityUri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(trip.getId())
+                .toUri();
+        // powinniśmy zwrócić URL właśnie zapisanego miasta
+        return ResponseEntity.created(savedCityUri).build();
+    }
+    //    @PostMapping(path ="/trips", consumes = "application/json")
+//    public ResponseEntity createCity(@RequestBody Trip trip){
+//       tripService.saveTrip(trip);
+//       return ResponseEntity.created(null).build();
+//}
     @GetMapping(path = "/trips", produces = "application/json")
-    public List<Trip> trips(@RequestParam(name = "tripFragment", required = false) String tripFragment) {
-        System.out.println("Zapytanie zawierało parametr 'tripFragment' o wartości: " + tripFragment);
-        return tripService.getAllTrips(tripFragment);
+    public List<Trip> trips(@RequestParam(name="tripDestinationFragment", required = false) String nameFragment){
+        System.out.println("Zapytanie zawierało parametr 'tripDestinationFragment' o wartości: "+nameFragment);
+        return tripService.getAllTrips(nameFragment);
     }
-
     @GetMapping(path = "/tripsByPrice", produces = "application/json")
-
-    public List<Trip> getTripByValue(@RequestParam double rangeFrom, @RequestParam double rangeTo) {
-        return tripService.getTripByValue(rangeFrom, rangeTo);
+    public List<Trip> tripsByPrice(@RequestParam double priceFrom, @RequestParam double priceTo) {
+        try {
+            return tripService.getByPrice(priceFrom, priceTo);
+        } catch (NoTripFoundException e) {
+            throw new RuntimeException(e);
         }
-
-
-
-
-
-
-        @ExceptionHandler(NoTripByPriceFoundException.class)
-        @ResponseStatus(HttpStatus.NOT_FOUND)
-        public ResponseEntity<ErrorMsg> handleNoTripByPriceFoundException (NoTripByPriceFoundException exception){
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(new ErrorMsg(exception.getMessage(),HttpStatus.NOT_FOUND.value()));
-
-        }
-        @ExceptionHandler(NoTripByThisValue.class)
-        @ResponseStatus(HttpStatus.BAD_REQUEST)
-        public ResponseEntity<ErrorMsg> handleNoTripsValue(NoTripByThisValue exception){
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorMsg(exception.getMessage(),HttpStatus.BAD_REQUEST.value()));
-        }
-
-
-
-
-//        Trip warszawa = new Trip();
-//        warszawa.setDestination("warszawa");
-//        warszawa.setEnd(LocalDate.of(2022,12,2));
-//        warszawa.setStart(LocalDate.of(2022,11,21));
-//        warszawa.setPriceEur(700);
-//
-//        Trip krakow = new Trip();
-//        krakow.setDestination("kraków");
-//        krakow.setPriceEur(1500);
-//        krakow.setStart(LocalDate.of(2022, 12, 30));
-//        krakow.setEnd(LocalDate.of(2023,01,07));
-
+    }
     @GetMapping(path = "/trips/{tripId}", produces = "application/json")
     public Trip tripsById(@PathVariable("tripId") Integer id){
-        Trip warszawa = new Trip();
-        warszawa.setDestination("warszawa");
-        warszawa.setEnd(LocalDate.of(2022,12,2));
-        warszawa.setStart(LocalDate.of(2022,11,21));
-        warszawa.setPriceEur(700);
-
-        Trip krakow = new Trip();
-        krakow.setDestination("kraków");
-        krakow.setPriceEur(1500);
-        krakow.setStart(LocalDate.of(2022, 12, 30));
-        krakow.setEnd(LocalDate.of(2023,01,07));
-        return 1==id ? warszawa:krakow;
+        return tripService.getAllTrips(null).get(id);
+    }
+    @ExceptionHandler(NoTripFoundException.class) // jaki wyjątek obsługujemy
+    @ResponseStatus(HttpStatus.NOT_FOUND) // jaki kod HTTP zwrócimy
+    public ResponseEntity<ErrorMessage> handleNoTripFoundException(NoTripFoundException exception) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body( new ErrorMessage(exception.getMessage(), HttpStatus.NOT_FOUND.value()));
+    }
+    @ExceptionHandler(WrongParameters.class) // jaki wyjątek obsługujemy
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // jaki kod HTTP zwrócimy
+    public ResponseEntity<ErrorMessage> handleBadParamerersException(WrongParameters exception) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body( new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value()));
+    }
+    @DeleteMapping(path = "/trips/{id}")
+    public void removeTrip(@PathVariable Integer id) {
+        tripService.removeTripById(id);
+    }
+    @PutMapping(path = "/trips/{id}")
+    public ResponseEntity updateTrip(@PathVariable Integer id, @RequestBody Trip trip) {
+        tripService.updateTrip(id, trip);
+        return ResponseEntity.noContent().build();
+    }
 }
-}
-

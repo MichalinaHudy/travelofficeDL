@@ -1,37 +1,34 @@
-package com.inqoo.TavelOfficeWeb.Model;
+package com.inqoo.TavelOfficeWeb;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/*
+    Ta klasa ma:
+    - przechowywać informacje o wycieczce (zakres i typy wg opisu)
+    - udostępniać możliwość wyświetlania informacji o wycieczce
+ */
 @Entity
+@Getter
+@Setter
+@ToString
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    private Integer id;
     @Column(name = "trip_start")
-    public LocalDate start;
+    private LocalDate start;
     @Column(name = "trip_end")
-    public LocalDate end;
-    @Column(name = "trip_destination",length = 40)
+    private LocalDate end;
+    @Column(name = "destination")
     private String destination;
     @Column(name = "price_eur")
     private double priceEur;
 
-    @Override
-    public String toString() {
-        return "Trip{" +
-                "start=" + start +
-                ", end=" + end +
-                ", destination='" + destination + '\'' +
-                ", priceEur=" + priceEur +
-                '}';
-    }
-@Transient
-    public double getPrice() {
-        return priceEur;
-    }
-    @Transient
     private boolean datesAreValid(LocalDate _start, LocalDate _end) {
         if (_end != null) {
             if (_start != null) {
@@ -43,48 +40,24 @@ public class Trip {
         }
         return true;
     }
-    @Transient
-    public void setStart(LocalDate _start) {
+    void setStart(LocalDate _start) {
         if (datesAreValid(_start, end)) {
             start = _start;
         }
-     }
-    @Transient
-    public void setEnd(LocalDate _end) {
+    }
+    void setEnd(LocalDate _end) {
         if (datesAreValid(start, _end)) {
             end = _end;
         }
-     }
-    @Transient
-    void printInfo() {
-        System.out.println("Trip to "+destination+" starts on: "+start+" ends on: "+end+". Price is "+getPrice()+" EUR");
     }
-    @Transient
+    public void printInfo() {
+        System.out.println("Trip to "+destination+" starts on: "+start+" ends on: "+end+". Price is "+getPriceEur()+" EUR");
+    }
     public boolean equals(Object o) {
         if (o == null) {
             return false;
         }
         Trip other = (Trip) o;
         return other.destination == destination;
-    }
-    @Transient
-    public LocalDate getStart() {
-        return start;
-    }
-    @Transient
-    public LocalDate getEnd() {
-        return end;
-    }
-    @Transient
-    public String getDestination() {
-        return destination;
-    }
-    @Transient
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-    @Transient
-    public void setPriceEur(double priceEur) {
-        this.priceEur = priceEur;
     }
 }
