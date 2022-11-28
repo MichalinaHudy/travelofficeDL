@@ -22,12 +22,7 @@ public class Customer {
     @JoinColumn(name = "customer_id")
     private List<Trip> trips;
 
-    public class CustomerAddressDetails {
-        private String country;
-        private String province;
-        private String road;
-        private String houseNumber;
-        private String zipCode;
+
         @Embedded
         @AttributeOverrides({
                 @AttributeOverride(name = "country", column = @Column(name = "country")),
@@ -51,4 +46,3 @@ public class Customer {
         })
         private CustomerNameDetails customerNameDetails;
     }
-}

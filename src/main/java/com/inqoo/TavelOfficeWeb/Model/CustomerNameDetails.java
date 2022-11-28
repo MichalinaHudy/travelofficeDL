@@ -6,8 +6,7 @@ import javax.persistence.Embeddable;
 import java.time.LocalDate;
 @Data
 @Embeddable
-public class CustomerNameDetails {
-
+public class CustomerNameDetails  {
     public  String firstname;
     private String lastname;
     private int age;

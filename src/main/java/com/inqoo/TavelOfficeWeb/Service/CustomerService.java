@@ -18,6 +18,7 @@ public class CustomerService {
     @Autowired
     private CustomerJpaRepository customerJpaRepository;
     private CustomerNameDetails customerNameDetails;
+
     public void saveCustomer(Customer customer) {
         customerJpaRepository.save(customer);
     } // logikę biznesową
@@ -26,6 +27,7 @@ public class CustomerService {
     public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean withoutAnyTrip) {
 ///////////////////////////////////////////tu trzeba zmian !!!!!!!!
         Customer exampleCustomer = Customer.builder()
+                .
                 //.
                 //.customerNameDetails.Firstname
                 //.address(addressFragment)
