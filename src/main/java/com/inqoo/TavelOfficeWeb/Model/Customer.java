@@ -22,27 +22,39 @@ public class Customer {
     @JoinColumn(name = "customer_id")
     private List<Trip> trips;
 
+    @Embedded
+    private CustomerNameDetails customerNameDetails;
 
-        @Embedded
-        @AttributeOverrides({
-                @AttributeOverride(name = "country", column = @Column(name = "country")),
-                @AttributeOverride(name = "province", column = @Column(name = "province")),
-                @AttributeOverride(name = "road", column = @Column(name = "road")),
-                @AttributeOverride(name = "houseNumber", column = @Column(name = "house_number")),
-                @AttributeOverride(name = "zipCode", column = @Column(name = "zip_code"))
-        })
-        private CustomerAddressDetails customerAddressDetails;
+//        @Embedded
+//        @AttributeOverrides({
+//                @AttributeOverride(name = "country", column = @Column(name = "country")),
+//                @AttributeOverride(name = "province", column = @Column(name = "province")),
+//                @AttributeOverride(name = "road", column = @Column(name = "road")),
+//                @AttributeOverride(name = "houseNumber", column = @Column(name = "house_number")),
+//                @AttributeOverride(name = "zipCode", column = @Column(name = "zip_code"))
+//        })
+//        private CustomerAddressDetails customerAddressDetails;
+//
+//
+////        @Embedded
+//        /// lub @AttributeOverrides( value= {
+//        @AttributeOverrides({
+//                @AttributeOverride(name = "firstname", column = @Column(name = "first_name")),
+//                @AttributeOverride(name = "lastname", column = @Column(name = "last_name")),
+//                @AttributeOverride(name = "age", column = @Column(name = "age")),
+//                @AttributeOverride(name = "dateOfBirth", column = @Column(name = "date_of_birth")),
+//                @AttributeOverride(name = "pesel", column = @Column(name = "pesel")),
+//                @AttributeOverride(name = "phone", column = @Column(name = "contact_phone"))
+//        })
+//        @Embedded
+//        private CustomerNameDetails customerNameDetails;
 
+    public Customer() {
 
-        @Embedded
-        /// lub @AttributeOverrides( value= {
-        @AttributeOverrides({
-                @AttributeOverride(name = "firstname", column = @Column(name = "first_name")),
-                @AttributeOverride(name = "lastname", column = @Column(name = "last_name")),
-                @AttributeOverride(name = "age", column = @Column(name = "age")),
-                @AttributeOverride(name = "dateOfBirth", column = @Column(name = "date_of_birth")),
-                @AttributeOverride(name = "pesel", column = @Column(name = "pesel")),
-                @AttributeOverride(name = "phone", column = @Column(name = "contact_phone"))
-        })
-        private CustomerNameDetails customerNameDetails;
+    }
+
+    public Customer(CustomerNameDetails customerNameDetails) {
+        this.customerNameDetails = customerNameDetails;
+    }
+
     }

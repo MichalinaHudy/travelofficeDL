@@ -1,5 +1,6 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
@@ -7,19 +8,25 @@ import java.time.LocalDate;
 @Data
 @Embeddable
 public class CustomerNameDetails  {
-    public  String firstname;
-    private String lastname;
+    @NotNull
+    private  String firstName;
+    @NotNull
+    private String lastName;
+    @NotNull
     private int age;
-    private LocalDate dateOfBirth;
+    @NotNull
     private String pesel;
+    @NotNull
     private String phone;
 
-//    public void fnLn(){
-//        StringBuilder stringBuilder = new StringBuilder();
-//        stringBuilder.append(Firstname);
-//        stringBuilder.append(" ");
-//        stringBuilder.append(Lastname);
-//        String personalName = stringBuilder.toString();
-//    }
+    public CustomerNameDetails() {
+
+    }
+
+    public CustomerNameDetails(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
 
 }

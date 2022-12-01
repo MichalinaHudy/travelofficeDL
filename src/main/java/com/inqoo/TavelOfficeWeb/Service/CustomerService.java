@@ -3,14 +3,12 @@ package com.inqoo.TavelOfficeWeb.Service;
 import com.inqoo.TavelOfficeWeb.Model.Customer;
 import com.inqoo.TavelOfficeWeb.Model.CustomerNameDetails;
 import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
-import com.inqoo.TavelOfficeWeb.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,11 +22,17 @@ public class CustomerService {
     } // logikę biznesową
 
 
-    public List<Customer> getAllCustomers(String firstLastNameFragment, String addressFragment, Boolean withoutAnyTrip) {
+    public CustomerNameDetails getCustomerNameDetails() {
+        return customerNameDetails;
+    }
+
+    public List<Customer> getAllCustomers(CustomerNameDetails lastNameFragment, String addressFragment, Boolean withoutAnyTrip) {
 ///////////////////////////////////////////tu trzeba zmian !!!!!!!!
-        Customer exampleCustomer = Customer.builder()
-                .
+        Customer exampleCustomer = Customer
+                .builder()
+                .customerNameDetails().
                 //.
+
                 //.customerNameDetails.Firstname
                 //.address(addressFragment)
                 .build();

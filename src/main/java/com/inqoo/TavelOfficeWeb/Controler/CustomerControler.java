@@ -1,6 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Controler;
 
 import com.inqoo.TavelOfficeWeb.Model.Customer;
+import com.inqoo.TavelOfficeWeb.Model.CustomerNameDetails;
 import com.inqoo.TavelOfficeWeb.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +11,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static org.hibernate.loader.internal.AliasConstantsHelper.get;
-
 @RestController
 public class CustomerControler {
     @Autowired
     private CustomerService customerService;
 
     @GetMapping(path = "/customers", produces = "application/json")
-    public List<Customer> customers( @RequestParam(name="firstLastNameFragment", required = false) String firstLastNameFragment,
+    public List<Customer> customers( @RequestParam(name="firstLastNameFragment", required = false) CustomerNameDetails firstLastNameFragment,
                                     @RequestParam(name="addressFragment", required = false) String addressFragment,
                                     @RequestParam(name="trip", required = false) Boolean trip){
         return customerService.getAllCustomers(firstLastNameFragment,addressFragment,trip);
