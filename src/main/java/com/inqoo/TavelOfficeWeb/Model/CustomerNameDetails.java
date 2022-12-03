@@ -1,12 +1,16 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
 @Data
 @Embeddable @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerNameDetails  {
     private  String firstName;
 

@@ -1,6 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedBy;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Trip {
     @Id
@@ -34,6 +36,8 @@ public class Trip {
     private String destination;
     @Column(name = "price_eur")
     private double priceEur;
+
+
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;

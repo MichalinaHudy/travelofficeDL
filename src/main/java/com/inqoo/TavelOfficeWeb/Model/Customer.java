@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-
+@NoArgsConstructor
 @Builder @AllArgsConstructor
 public class Customer {
     @Id
@@ -41,17 +41,17 @@ public class Customer {
 
 
     @Embedded
-    private CustomerNameDetails customerNameDetails;
-    @AttributeOverrides({
-            @AttributeOverride(name = "firstname", column = @Column(name = "first_name")),
-            @AttributeOverride(name = "lastname", column = @Column(name = "last_name")),
-            @AttributeOverride(name = "age", column = @Column(name = "age")),
-            @AttributeOverride(name = "dateOfBirth", column = @Column(name = "date_of_birth")),
-            @AttributeOverride(name = "pesel", column = @Column(name = "pesel")),
-            @AttributeOverride(name = "phone", column = @Column(name = "contact_phone"))
-    })
-//    @Embedded
-    private CustomerAddressDetails customerAddressDetails;
+    private CustomerNameDetails customerNameDetails = new CustomerNameDetails();
+//    @AttributeOverrides({
+//            @AttributeOverride(name = "firstname", column = @Column(name = "first_name")),
+//            @AttributeOverride(name = "lastname", column = @Column(name = "last_name")),
+//            @AttributeOverride(name = "age", column = @Column(name = "age")),
+//            @AttributeOverride(name = "dateOfBirth", column = @Column(name = "date_of_birth")),
+//            @AttributeOverride(name = "pesel", column = @Column(name = "pesel")),
+//            @AttributeOverride(name = "phone", column = @Column(name = "contact_phone"))
+//    })
+////    @Embedded
+//    private CustomerAddressDetails customerAddressDetails;
 
 //    @Embedded
 //    @AttributeOverrides({
