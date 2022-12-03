@@ -27,10 +27,10 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers(String firstNameFragment, String addressFragment, Boolean withoutAnyTrip) {
-        Customer cus1 = new Customer();
-        CustomerNameDetails cus2 = new CustomerNameDetails();
-        cus2.setFirstName(firstNameFragment);
-        cus1.setCustomerNameDetails(cus2);
+//        Customer cus1 = new Customer();
+//        CustomerNameDetails cus2 = new CustomerNameDetails();
+//        cus2.setFirstName(firstNameFragment);
+//        cus1.setCustomerNameDetails(cus2);
 
 
         CustomerNameDetails details = CustomerNameDetails.builder().firstName(firstNameFragment).build();
