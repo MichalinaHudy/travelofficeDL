@@ -7,6 +7,7 @@ import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.history.Revisions;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +22,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class TripService {
-
 
 
         private final TripJpaRepository tripJpaRepository;
         @Autowired
         private CustomerJpaRepository customerJpaRepository;
         @Autowired
-        private  TripRepository tripRepository;
+        private TripRepository tripRepository;
 
 
         public void saveTrip(Trip trip) {

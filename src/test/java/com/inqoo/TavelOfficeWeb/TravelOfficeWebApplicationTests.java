@@ -33,20 +33,18 @@ class TravelOfficeWebApplicationTests {
 		Mockito.when(mockedTripRepository.findAll(Mockito.any(Example.class)))
 				.thenReturn(List.of(tosave));
 
-		tripService = new TripService();
+		tripService = new TripService(mockedTripRepository);
 
 	}
 	@Test
 	void saveTripShouldBeReturnedByFindAll(){
 
 		tripService.saveTrip(tosave);
-		List<Trip> allTrips = tripService.getAllTrips(null);
+		List<Trip> allTrips = tripService.getAllTrips("Berlin");
 		System.out.println(allTrips);
 		Optional<Trip> maybyeBerlin = allTrips.stream().filter(t ->t.getDestination().equals("Berlin")).findFirst();
-		Assertions.assertThat()
+		Assertions.assertThat(maybyeBerlin);
 	}
-
-
 
 
 }
