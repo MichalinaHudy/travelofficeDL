@@ -1,7 +1,7 @@
 package com.inqoo.TavelOfficeWeb.Repository;
 
 
-import com.inqoo.TavelOfficeWeb.Trip;
+import com.inqoo.TavelOfficeWeb.Model.Trip;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;

@@ -3,7 +3,7 @@ package com.inqoo.TavelOfficeWeb.Service;
 import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepository;
 import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
-import com.inqoo.TavelOfficeWeb.Trip;
+import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 
 import org.springframework.beans.factory.annotation.Autowired;

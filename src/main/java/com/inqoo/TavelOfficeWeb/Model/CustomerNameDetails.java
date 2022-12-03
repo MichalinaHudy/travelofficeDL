@@ -19,6 +19,4 @@ public class CustomerNameDetails  {
     private String phone;
 
 
-
-
 }

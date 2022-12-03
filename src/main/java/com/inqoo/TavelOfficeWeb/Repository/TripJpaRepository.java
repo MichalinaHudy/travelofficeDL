@@ -1,5 +1,5 @@
 package com.inqoo.TavelOfficeWeb.Repository;
-import com.inqoo.TavelOfficeWeb.Trip;
+import com.inqoo.TavelOfficeWeb.Model.Trip;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

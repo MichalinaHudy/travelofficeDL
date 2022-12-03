@@ -1,11 +1,16 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.TavelOfficeWeb.Model;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /*
     Ta klasa ma:
@@ -16,6 +21,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +34,24 @@ public class Trip {
     private String destination;
     @Column(name = "price_eur")
     private double priceEur;
+    @CreatedBy
+    @Column(updatable = false)
+    private String createdBy;
+
+    // kolumny audytowe
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdOn;
+
+    @LastModifiedDate
+    @Column(insertable = false)
+    private LocalDateTime modifiedOn;
+
+
+
+
+
+
 
     private boolean datesAreValid(LocalDate _start, LocalDate _end) {
         if (_end != null) {

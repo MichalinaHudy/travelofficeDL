@@ -1,6 +1,6 @@
-package com.inqoo.TavelOfficeWeb.model;
+package com.inqoo.TavelOfficeWeb.Model;
 
-import com.inqoo.TavelOfficeWeb.Trip;
+import com.inqoo.TavelOfficeWeb.Model.Trip;
 
 public class DomesticTrip extends Trip {
     private double ownArrivalDiscount;
