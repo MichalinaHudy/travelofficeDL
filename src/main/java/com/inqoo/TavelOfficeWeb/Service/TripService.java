@@ -27,10 +27,6 @@ public class TripService {
 
 
         private final TripJpaRepository tripJpaRepository;
-        @Autowired
-        private CustomerJpaRepository customerJpaRepository;
-        @Autowired
-        private TripRepository tripRepository;
 
 
         public void saveTrip(Trip trip) {
@@ -55,7 +51,7 @@ public class TripService {
         }
 
         public List<Trip> getAllTrips(String nameFragment) {
-                List<Trip> result = tripJpaRepository.findAll();
+                List<Trip> result = tripJpaRepository.findAll(); // tu Mockito zwróci to co kazaliśmy
                 if (nameFragment != null) {
                         result = result.stream()
                                 .filter(c -> c.getDestination().contains(nameFragment))
