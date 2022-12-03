@@ -24,12 +24,13 @@ import java.util.stream.Collectors;
 public class TripService {
 
 
-        @Autowired
-        private TripJpaRepository tripJpaRepository;
+
+        private final TripJpaRepository tripJpaRepository;
         @Autowired
         private CustomerJpaRepository customerJpaRepository;
         @Autowired
-        private TripRepository tripRepository;
+        private  TripRepository tripRepository;
+
 
         public void saveTrip(Trip trip) {
                 tripJpaRepository.save(trip);
