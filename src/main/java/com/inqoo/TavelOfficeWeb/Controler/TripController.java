@@ -6,6 +6,7 @@ import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.history.Revisions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class TripController {
@@ -59,6 +61,31 @@ public class TripController {
                 .status(HttpStatus.NOT_FOUND)
                 .body( new ErrorMessage(exception.getMessage(), HttpStatus.NOT_FOUND.value()));
     }
+
+    @GetMapping(path = "/trips/{tripId}/revisions",produces = "application/json")
+    public List<Trip> tripRevisionById(@PathVariable("tripId") Integer id){
+        Revisions<Integer,Trip> allTripRevisions = tripService.getAllTripsRevisions(id);
+        List<Trip> tripChanges = allTripRevisions.get()
+                .map(r->r.getEntity())
+                .collect(Collectors.toList());
+        return tripChanges;
+    }
+
+
+
+//    @GetMapping(path = "/cities/{cityId}/revisions", produces = "application/json")
+//    public List<City> cityRevisionsById(@PathVariable("cityId") Integer id) {
+//        Revisions<Integer, City> allCityRevisions = cityService.getAllCityRevisions(id);
+//        List<City> cityChanges = allCityRevisions.get()
+//                .map(r -> r.getEntity())
+//                .collect(Collectors.toList());
+//        return cityChanges;
+//    }
+
+
+
+
+
     @ExceptionHandler(WrongParameters.class) // jaki wyjątek obsługujemy
     @ResponseStatus(HttpStatus.BAD_REQUEST) // jaki kod HTTP zwrócimy
     public ResponseEntity<ErrorMessage> handleBadParamerersException(WrongParameters exception) {

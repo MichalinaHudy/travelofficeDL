@@ -2,11 +2,13 @@ package com.inqoo.TavelOfficeWeb.Service;
 
 import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepository;
+import com.inqoo.TavelOfficeWeb.Repository.TripRepository;
 import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
 import com.inqoo.TavelOfficeWeb.Model.Trip;
 import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.history.Revisions;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +28,8 @@ public class TripService {
         private TripJpaRepository tripJpaRepository;
         @Autowired
         private CustomerJpaRepository customerJpaRepository;
+        @Autowired
+        private TripRepository tripRepository;
 
         public void saveTrip(Trip trip) {
                 tripJpaRepository.save(trip);
@@ -69,5 +73,8 @@ public class TripService {
                 return tripsByPrice;
         }
 
-
+        public Revisions<Integer, Trip> getAllTripsRevisions(Integer tripId) {
+                return tripJpaRepository.findRevisions(tripId);
+                        //findRevisions(tripId);
+        }
 }

@@ -2,14 +2,13 @@ package com.inqoo.TavelOfficeWeb.Repository;
 
 
 import com.inqoo.TavelOfficeWeb.Model.Trip;
+import org.springframework.data.history.Revisions;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @Repository
 public class TripRepository {
@@ -47,4 +46,5 @@ public class TripRepository {
         trips.add(c3);
         trips.add(c4);
     }
+
 }
