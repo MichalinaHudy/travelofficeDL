@@ -17,10 +17,10 @@ public class CustomerControler {
     private CustomerService customerService;
 
     @GetMapping(path = "/customers", produces = "application/json")
-    public List<Customer> customers( @RequestParam(name="firstLastNameFragment", required = false) CustomerNameDetails firstLastNameFragment,
+    public List<Customer> customers( @RequestParam(name="firstNameFragment", required = false) String firstNameFragment,
                                     @RequestParam(name="addressFragment", required = false) String addressFragment,
                                     @RequestParam(name="trip", required = false) Boolean trip){
-        return customerService.getAllCustomers(firstLastNameFragment,addressFragment,trip);
+        return customerService.getAllCustomers(firstNameFragment,addressFragment,trip);
     }
 
 

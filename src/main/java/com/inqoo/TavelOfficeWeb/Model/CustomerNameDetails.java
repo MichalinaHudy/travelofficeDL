@@ -1,12 +1,13 @@
 package com.inqoo.TavelOfficeWeb.Model;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
 import java.time.LocalDate;
 @Data
-@Embeddable
+@Embeddable @Builder
 public class CustomerNameDetails  {
     @NotNull
     private  String firstName;

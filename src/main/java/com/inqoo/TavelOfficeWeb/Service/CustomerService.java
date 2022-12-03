@@ -26,15 +26,18 @@ public class CustomerService {
         return customerNameDetails;
     }
 
-    public List<Customer> getAllCustomers(CustomerNameDetails lastNameFragment, String addressFragment, Boolean withoutAnyTrip) {
-///////////////////////////////////////////tu trzeba zmian !!!!!!!!
+    public List<Customer> getAllCustomers(String firstNameFragment, String addressFragment, Boolean withoutAnyTrip) {
+        Customer cus1 = new Customer();
+        CustomerNameDetails cus2 = new CustomerNameDetails();
+        cus2.setFirstName(firstNameFragment);
+        cus1.setCustomerNameDetails(cus2);
+
+
+        CustomerNameDetails details = CustomerNameDetails.builder().firstName(firstNameFragment).build();
+
         Customer exampleCustomer = Customer
                 .builder()
-                .customerNameDetails().
-                //.
-
-                //.customerNameDetails.Firstname
-                //.address(addressFragment)
+                .customerNameDetails(details)
                 .build();
 
         ExampleMatcher firstLastNameFragmentMatcher = ExampleMatcher

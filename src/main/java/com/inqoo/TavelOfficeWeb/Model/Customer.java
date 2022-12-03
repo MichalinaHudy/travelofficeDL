@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 
-@Builder @NoArgsConstructor  @AllArgsConstructor
+@Builder @AllArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +25,15 @@ public class Customer {
     @Embedded
     private CustomerNameDetails customerNameDetails;
 
-//        @Embedded
-//        @AttributeOverrides({
-//                @AttributeOverride(name = "country", column = @Column(name = "country")),
-//                @AttributeOverride(name = "province", column = @Column(name = "province")),
-//                @AttributeOverride(name = "road", column = @Column(name = "road")),
-//                @AttributeOverride(name = "houseNumber", column = @Column(name = "house_number")),
-//                @AttributeOverride(name = "zipCode", column = @Column(name = "zip_code"))
-//        })
-//        private CustomerAddressDetails customerAddressDetails;
+        @Embedded
+        @AttributeOverrides({
+                @AttributeOverride(name = "country", column = @Column(name = "country")),
+                @AttributeOverride(name = "province", column = @Column(name = "province")),
+                @AttributeOverride(name = "road", column = @Column(name = "road")),
+                @AttributeOverride(name = "houseNumber", column = @Column(name = "house_number")),
+                @AttributeOverride(name = "zipCode", column = @Column(name = "zip_code"))
+        })
+        private CustomerAddressDetails customerAddressDetails;
 //
 //
 ////        @Embedded
