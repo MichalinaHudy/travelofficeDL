@@ -38,8 +38,9 @@ public class CustomerControler {
                 .path("/{id}")
                 .buildAndExpand(customer.getId())
                 .toUri();
-        // powinniśmy zwrócić URL właśnie zapisanego miasta
         return ResponseEntity.created(savedCustomerId).build();
     }
+
+
 
 }

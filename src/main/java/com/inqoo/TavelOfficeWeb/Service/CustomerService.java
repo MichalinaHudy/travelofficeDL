@@ -15,16 +15,16 @@ import java.util.stream.Collectors;
 public class CustomerService {
     @Autowired
     private CustomerJpaRepository customerJpaRepository;
-    private CustomerNameDetails customerNameDetails;
+
 
     public void saveCustomer(Customer customer) {
         customerJpaRepository.save(customer);
     } // logikę biznesową
 
 
-    public CustomerNameDetails getCustomerNameDetails() {
-        return customerNameDetails;
-    }
+//    public CustomerNameDetails getCustomerNameDetails() {
+//        return customerNameDetails;
+//    }
 
     public List<Customer> getAllCustomers(String firstNameFragment, String addressFragment, Boolean withoutAnyTrip) {
 //        Customer cus1 = new Customer();
