@@ -2,8 +2,10 @@ package com.inqoo.TavelOfficeWeb.Controler;
 
 import com.inqoo.TavelOfficeWeb.Model.Customer;
 import com.inqoo.TavelOfficeWeb.Model.CustomerNameDetails;
+import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
 import com.inqoo.TavelOfficeWeb.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -41,6 +43,17 @@ public class CustomerControler {
         return ResponseEntity.created(savedCustomerId).build();
     }
 
+//***************************    ćwiczę TOOO DOOO
+//    @PatchMapping("/customers/{id}/{firstName}")
+//    public ResponseEntity<Customer> updatePartCustomer(@PathVariable Long id, @PathVariable String firstName) {
+//        try {
+//            Customer customer= CustomerService.findById(id).get();
+//            customer.setFirstName(firstName);
+//            return new ResponseEntity<Customer>(Customerservice.save(customer), HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+    }
 
 
 }
