@@ -1,22 +1,15 @@
-package com.inqoo.TavelOfficeWeb.Service;
+package com.inqoo.TavelOfficeWeb.service;
 
-import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
-import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepository;
+import com.inqoo.TavelOfficeWeb.repository.TripJpaRepository;
 
 import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
-import com.inqoo.TavelOfficeWeb.Model.Trip;
+import com.inqoo.TavelOfficeWeb.model.Trip;
 import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.history.Revisions;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

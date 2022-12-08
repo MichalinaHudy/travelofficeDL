@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.Model;
+package com.inqoo.TavelOfficeWeb.model;
 
 import lombok.*;
 import org.hibernate.envers.Audited;

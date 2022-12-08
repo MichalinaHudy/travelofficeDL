@@ -1,8 +1,8 @@
-package com.inqoo.TavelOfficeWeb.Service;
+package com.inqoo.TavelOfficeWeb.service;
 
-import com.inqoo.TavelOfficeWeb.Model.Customer;
-import com.inqoo.TavelOfficeWeb.Model.CustomerNameDetails;
-import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
+import com.inqoo.TavelOfficeWeb.model.Customer;
+import com.inqoo.TavelOfficeWeb.model.CustomerNameDetails;
+import com.inqoo.TavelOfficeWeb.repository.CustomerJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -14,12 +14,16 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerService {
     @Autowired
-    private CustomerJpaRepository customerJpaRepository;
+    private static CustomerJpaRepository customerJpaRepository;
+
+    public CustomerService(CustomerJpaRepository mockedCustomerRepository) {
+
+    }
 
 
     public void saveCustomer(Customer customer) {
         customerJpaRepository.save(customer);
-    } // logikę biznesową
+ }
 
 
 //    public CustomerNameDetails getCustomerNameDetails() {

@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.Model;
+package com.inqoo.TavelOfficeWeb.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +12,7 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerNameDetails  {
+
     private  String firstName;
 
     private String lastName;

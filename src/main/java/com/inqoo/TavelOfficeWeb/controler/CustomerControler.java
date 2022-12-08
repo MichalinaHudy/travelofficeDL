@@ -1,11 +1,8 @@
-package com.inqoo.TavelOfficeWeb.Controler;
+package com.inqoo.TavelOfficeWeb.controler;
 
-import com.inqoo.TavelOfficeWeb.Model.Customer;
-import com.inqoo.TavelOfficeWeb.Model.CustomerNameDetails;
-import com.inqoo.TavelOfficeWeb.Repository.CustomerJpaRepository;
-import com.inqoo.TavelOfficeWeb.Service.CustomerService;
+import com.inqoo.TavelOfficeWeb.model.Customer;
+import com.inqoo.TavelOfficeWeb.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

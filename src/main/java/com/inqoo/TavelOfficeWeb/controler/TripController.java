@@ -1,9 +1,9 @@
-package com.inqoo.TavelOfficeWeb.Controler;
+package com.inqoo.TavelOfficeWeb.controler;
 
-import com.inqoo.TavelOfficeWeb.Service.TripService;
+import com.inqoo.TavelOfficeWeb.service.TripService;
 import com.inqoo.TavelOfficeWeb.exception.ErrorMessage;
 import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
-import com.inqoo.TavelOfficeWeb.Model.Trip;
+import com.inqoo.TavelOfficeWeb.model.Trip;
 import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.history.Revisions;
@@ -17,11 +17,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("trips")
 public class TripController {
 
     @Autowired
     private TripService tripService;
-    @PostMapping(path = "/trips", consumes = "application/json")
+
+    //path
+    @PostMapping(path = "/", consumes = "application/json")
     public ResponseEntity createTrip(@RequestBody Trip trip) {
         tripService.saveTrip(trip);
 
@@ -42,7 +45,7 @@ public class TripController {
         System.out.println("Zapytanie zawierało parametr 'tripDestinationFragment' o wartości: "+nameFragment);
         return tripService.getAllTrips(nameFragment);
     }
-    @GetMapping(path = "/tripsByPrice", produces = "application/json")
+    @GetMapping(path = "/ByPrice", produces = "application/json")
     public List<Trip> tripsByPrice(@RequestParam double priceFrom, @RequestParam double priceTo) {
         try {
             return tripService.getByPrice(priceFrom, priceTo);

@@ -1,13 +1,16 @@
 package com.inqoo.TavelOfficeWeb;
 
-import com.inqoo.TavelOfficeWeb.Model.Trip;
-import com.inqoo.TavelOfficeWeb.Repository.TripJpaRepository;
-import com.inqoo.TavelOfficeWeb.Service.TripService;
+import com.inqoo.TavelOfficeWeb.model.Customer;
+import com.inqoo.TavelOfficeWeb.model.CustomerNameDetails;
+import com.inqoo.TavelOfficeWeb.model.Trip;
+import com.inqoo.TavelOfficeWeb.repository.CustomerJpaRepository;
+import com.inqoo.TavelOfficeWeb.repository.TripJpaRepository;
+import com.inqoo.TavelOfficeWeb.service.CustomerService;
+import com.inqoo.TavelOfficeWeb.service.TripService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.data.domain.Example;
 
 
 import java.util.List;
@@ -50,5 +53,49 @@ class TravelOfficeWebApplicationTests {
 		Assertions.assertThat(maybyeBerlin);
 	}
 
+
+
+	private CustomerService customerService;
+
+	Customer cus1 = new Customer();
+	Customer cus3 = new Customer();
+	CustomerNameDetails cus2 = new CustomerNameDetails();
+	CustomerNameDetails cus4 = new CustomerNameDetails();
+
+	@BeforeEach
+	public void setdata () {
+		cus2.setFirstName("Dawid");
+		cus2.setLastName("Lyka");
+		cus4.setFirstName("Dawid");
+		cus4.setLastName("Kowalski");
+		cus1.setCustomerNameDetails(cus2);
+		cus1.setCustomerNameDetails(cus2);
+		cus3.setCustomerNameDetails(cus4);
+		cus3.setCustomerNameDetails(cus4);
+
+
+		CustomerJpaRepository mockedCustomerRepository =
+				Mockito.mock(CustomerJpaRepository.class);
+
+////		Mockito.when(mockedCustomerRepository.save(cus2))
+////				.thenReturn(cus2);
+//
+		Mockito.when(mockedCustomerRepository.findAll())
+				.thenReturn(List.of(cus1,cus3));
+//
+		customerService = new CustomerService(mockedCustomerRepository);
+
+	}
+	@Test
+	void saveCustomertoFindAll(){
+		//CustomerService.saveCustomer(cus1);
+		//customerService.saveCustomer(cus1);
+		customerService.saveCustomer(cus3);
+		List<Customer> allCustomers = customerService.getAllCustomers(null,null,false);
+		System.out.println(allCustomers);
+		org.junit.jupiter.api.Assertions.assertEquals(1, allCustomers.size());
+//		Optional<Customer> maybyeDawid = allCustomers.stream().filter(c ->c.getCustomerNameDetails().getFirstName().equals("dawid")).findFirst();
+//		Assertions.assertThat(maybyeDawid);
+	}
 
 }

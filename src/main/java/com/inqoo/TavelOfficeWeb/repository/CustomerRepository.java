@@ -1,12 +1,5 @@
-package com.inqoo.TavelOfficeWeb.Repository;
+package com.inqoo.TavelOfficeWeb.repository;
 
-
-import com.inqoo.TavelOfficeWeb.Model.Customer;
-import org.springframework.stereotype.Repository;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 //@Repository
 //public class CustomerRepository {
