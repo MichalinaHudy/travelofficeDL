@@ -47,8 +47,6 @@ public class Customer {
     private CustomerNameDetails customerNameDetails = new CustomerNameDetails();
     private CustomerAddressDetails customerAddressDetails = new CustomerAddressDetails();
 
-////    @Embedded
-//    private CustomerAddressDetails customerAddressDetails;
 
 
     }

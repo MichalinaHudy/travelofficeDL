@@ -90,8 +90,10 @@ class TravelOfficeWebApplicationTests {
 	void saveCustomertoFindAll(){
 		//CustomerService.saveCustomer(cus1);
 		//customerService.saveCustomer(cus1);
+
 		customerService.saveCustomer(cus3);
-		List<Customer> allCustomers = customerService.getAllCustomers(null,null,false);
+
+		List<Customer> allCustomers = customerService.getAllCust();
 		System.out.println(allCustomers);
 		org.junit.jupiter.api.Assertions.assertEquals(1, allCustomers.size());
 //		Optional<Customer> maybyeDawid = allCustomers.stream().filter(c ->c.getCustomerNameDetails().getFirstName().equals("dawid")).findFirst();

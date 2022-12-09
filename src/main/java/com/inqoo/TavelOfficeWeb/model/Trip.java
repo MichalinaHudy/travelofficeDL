@@ -11,11 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/*
-    Ta klasa ma:
-    - przechowywać informacje o wycieczce (zakres i typy wg opisu)
-    - udostępniać możliwość wyświetlania informacji o wycieczce
- */
+
 @Entity
 @Getter
 @Setter
@@ -50,33 +46,5 @@ public class Trip {
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime modifiedOn;
-
-
-
-
-
-
-
-//    private boolean datesAreValid(LocalDate _start, LocalDate _end) {
-//        if (_end != null) {
-//            if (_start != null) {
-//                if (_start.isAfter(_end)) {
-//                    System.out.println("Data rozpoczęcia nie może być po dacie zakończenia");
-//                    return false;
-//                }
-//            }
-//        }
-//        return true;
-//    }
-//    void setStart(LocalDate _start) {
-//        if (datesAreValid(_start, end)) {
-//            start = _start;
-//        }
-//    }
-//    void setEnd(LocalDate _end) {
-//        if (datesAreValid(start, _end)) {
-//            end = _end;
-//        }
-//    }
 
 }

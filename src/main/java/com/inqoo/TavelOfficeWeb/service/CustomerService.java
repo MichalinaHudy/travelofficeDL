@@ -2,6 +2,7 @@ package com.inqoo.TavelOfficeWeb.service;
 
 import com.inqoo.TavelOfficeWeb.model.Customer;
 import com.inqoo.TavelOfficeWeb.model.CustomerNameDetails;
+import com.inqoo.TavelOfficeWeb.model.Trip;
 import com.inqoo.TavelOfficeWeb.repository.CustomerJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -13,9 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
-    @Autowired
-    private static CustomerJpaRepository customerJpaRepository;
 
+    private  CustomerJpaRepository customerJpaRepository;
+
+    ///////////// NIE WIEM CZY TO MA TU BYĆ
     public CustomerService(CustomerJpaRepository mockedCustomerRepository) {
 
     }
@@ -24,11 +26,10 @@ public class CustomerService {
     public void saveCustomer(Customer customer) {
         customerJpaRepository.save(customer);
  }
+    public List<Customer> getAllCust() {
+        return customerJpaRepository.findAll();
+    }
 
-
-//    public CustomerNameDetails getCustomerNameDetails() {
-//        return customerNameDetails;
-//    }
 
     public List<Customer> getAllCustomers(String firstNameFragment, String addressFragment, Boolean withoutAnyTrip) {
 //        Customer cus1 = new Customer();
