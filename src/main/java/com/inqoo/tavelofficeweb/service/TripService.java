@@ -1,10 +1,10 @@
-package com.inqoo.TavelOfficeWeb.service;
+package com.inqoo.tavelofficeweb.service;
 
-import com.inqoo.TavelOfficeWeb.repository.TripJpaRepository;
+import com.inqoo.tavelofficeweb.repository.TripJpaRepository;
 
-import com.inqoo.TavelOfficeWeb.exception.NoTripFoundException;
-import com.inqoo.TavelOfficeWeb.model.Trip;
-import com.inqoo.TavelOfficeWeb.exception.WrongParameters;
+import com.inqoo.tavelofficeweb.exception.NoTripFoundException;
+import com.inqoo.tavelofficeweb.model.Trip;
+import com.inqoo.tavelofficeweb.exception.WrongParameters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.history.Revisions;
