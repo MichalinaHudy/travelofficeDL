@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.model.helper;
+package com.inqoo.tavelofficeweb.model.helper;
 
 import org.springframework.data.domain.AuditorAware;
 

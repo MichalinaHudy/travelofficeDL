@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.model;
+package com.inqoo.tavelofficeweb.model;
 
 
 import lombok.*;
@@ -19,7 +19,6 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @Builder @AllArgsConstructor
-
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +32,6 @@ public class Customer {
     @Column(updatable = false)
     private String createdBy;
 
-
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdOn;
@@ -42,9 +40,9 @@ public class Customer {
     @Column(insertable = false)
     private LocalDateTime modifiedOn;
 
-
     @Embedded
     private CustomerNameDetails customerNameDetails = new CustomerNameDetails();
+    @Embedded
     private CustomerAddressDetails customerAddressDetails = new CustomerAddressDetails();
 
 

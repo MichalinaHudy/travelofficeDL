@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.model;
+package com.inqoo.tavelofficeweb.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

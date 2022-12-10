@@ -1,5 +1,5 @@
-package com.inqoo.TavelOfficeWeb.repository;
-import com.inqoo.TavelOfficeWeb.model.Trip;
+package com.inqoo.tavelofficeweb.repository;
+import com.inqoo.tavelofficeweb.model.Trip;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.history.RevisionRepository;

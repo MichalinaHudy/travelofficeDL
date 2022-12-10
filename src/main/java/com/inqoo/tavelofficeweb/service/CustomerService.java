@@ -1,10 +1,9 @@
-package com.inqoo.TavelOfficeWeb.service;
+package com.inqoo.tavelofficeweb.service;
 
-import com.inqoo.TavelOfficeWeb.model.Customer;
-import com.inqoo.TavelOfficeWeb.model.CustomerNameDetails;
-import com.inqoo.TavelOfficeWeb.model.Trip;
-import com.inqoo.TavelOfficeWeb.repository.CustomerJpaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.inqoo.tavelofficeweb.model.Customer;
+import com.inqoo.tavelofficeweb.model.CustomerNameDetails;
+import com.inqoo.tavelofficeweb.repository.CustomerJpaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -12,16 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service@RequiredArgsConstructor
 public class CustomerService {
 
-    private  CustomerJpaRepository customerJpaRepository;
-
-    ///////////// NIE WIEM CZY TO MA TU BYĆ
-    public CustomerService(CustomerJpaRepository mockedCustomerRepository) {
-
-    }
-
+    private final CustomerJpaRepository customerJpaRepository;
 
     public void saveCustomer(Customer customer) {
         customerJpaRepository.save(customer);

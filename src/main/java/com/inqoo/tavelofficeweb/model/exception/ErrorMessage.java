@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.exception;
+package com.inqoo.tavelofficeweb.exception;
 
 public class ErrorMessage {
     private String message; // opis tekstowy błędu

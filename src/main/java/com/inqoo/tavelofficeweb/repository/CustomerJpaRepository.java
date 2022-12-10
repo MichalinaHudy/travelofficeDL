@@ -1,6 +1,6 @@
-package com.inqoo.TavelOfficeWeb.repository;
+package com.inqoo.tavelofficeweb.repository;
 
-import com.inqoo.TavelOfficeWeb.model.Customer;
+import com.inqoo.tavelofficeweb.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

@@ -1,12 +1,12 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.tavelofficeweb;
 
-import com.inqoo.TavelOfficeWeb.model.Customer;
-import com.inqoo.TavelOfficeWeb.model.CustomerNameDetails;
-import com.inqoo.TavelOfficeWeb.model.Trip;
-import com.inqoo.TavelOfficeWeb.repository.CustomerJpaRepository;
-import com.inqoo.TavelOfficeWeb.repository.TripJpaRepository;
-import com.inqoo.TavelOfficeWeb.service.CustomerService;
-import com.inqoo.TavelOfficeWeb.service.TripService;
+import com.inqoo.tavelofficeweb.model.Customer;
+import com.inqoo.tavelofficeweb.model.CustomerNameDetails;
+import com.inqoo.tavelofficeweb.model.Trip;
+import com.inqoo.tavelofficeweb.repository.CustomerJpaRepository;
+import com.inqoo.tavelofficeweb.repository.TripJpaRepository;
+import com.inqoo.tavelofficeweb.service.CustomerService;
+import com.inqoo.tavelofficeweb.service.TripService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -88,16 +88,15 @@ class TravelOfficeWebApplicationTests {
 	}
 	@Test
 	void saveCustomertoFindAll(){
-		//CustomerService.saveCustomer(cus1);
-		//customerService.saveCustomer(cus1);
 
+		customerService.saveCustomer(cus1);
 		customerService.saveCustomer(cus3);
 
 		List<Customer> allCustomers = customerService.getAllCust();
 		System.out.println(allCustomers);
 		org.junit.jupiter.api.Assertions.assertEquals(1, allCustomers.size());
-//		Optional<Customer> maybyeDawid = allCustomers.stream().filter(c ->c.getCustomerNameDetails().getFirstName().equals("dawid")).findFirst();
-//		Assertions.assertThat(maybyeDawid);
+		Optional<Customer> maybyeDawid = allCustomers.stream().filter(c ->c.getCustomerNameDetails().getFirstName().equals("dawid")).findFirst();
+		Assertions.assertThat(maybyeDawid);
 	}
 
 }

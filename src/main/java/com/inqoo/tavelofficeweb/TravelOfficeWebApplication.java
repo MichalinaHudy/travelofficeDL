@@ -1,6 +1,6 @@
-package com.inqoo.TavelOfficeWeb;
+package com.inqoo.tavelofficeweb;
 
-import com.inqoo.TavelOfficeWeb.model.helper.AuditorAwareProvider;
+import com.inqoo.tavelofficeweb.model.helper.AuditorAwareProvider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

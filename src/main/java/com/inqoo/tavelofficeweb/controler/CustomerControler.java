@@ -1,7 +1,7 @@
-package com.inqoo.TavelOfficeWeb.controler;
+package com.inqoo.tavelofficeweb.controler;
 
-import com.inqoo.TavelOfficeWeb.model.Customer;
-import com.inqoo.TavelOfficeWeb.service.CustomerService;
+import com.inqoo.tavelofficeweb.model.Customer;
+import com.inqoo.tavelofficeweb.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

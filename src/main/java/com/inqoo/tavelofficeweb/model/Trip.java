@@ -1,4 +1,4 @@
-package com.inqoo.TavelOfficeWeb.model;
+package com.inqoo.tavelofficeweb.model;
 
 import lombok.*;
 import org.hibernate.envers.Audited;
@@ -10,13 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-
 @Entity
 @Getter
 @Setter
 @ToString
-
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Audited
