@@ -66,6 +66,6 @@ public class TripService {
 
         public Revisions<Integer, Trip> getAllTripsRevisions(Integer tripId) {
                 return tripJpaRepository.findRevisions(tripId);
-                        //findRevisions(tripId);
+
         }
 }

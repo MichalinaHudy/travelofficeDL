@@ -33,7 +33,7 @@ public class Customer {
     @Column(updatable = false)
     private String createdBy;
 
-    // kolumny audytowe
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdOn;

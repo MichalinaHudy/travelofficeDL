@@ -33,12 +33,10 @@ public class Trip {
     @Column(name = "price_eur")
     private double priceEur;
 
-
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;
 
-    // kolumny audytowe
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdOn;

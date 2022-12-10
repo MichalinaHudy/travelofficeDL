@@ -32,14 +32,9 @@ public class TripController {
                 .path("/{id}")
                 .buildAndExpand(trip.getId())
                 .toUri();
-        // powinniśmy zwrócić URL właśnie zapisanego miasta
         return ResponseEntity.created(savedCityUri).build();
     }
-    //    @PostMapping(path ="/trips", consumes = "application/json")
-//    public ResponseEntity createCity(@RequestBody Trip trip){
-//       tripService.saveTrip(trip);
-//       return ResponseEntity.created(null).build();
-//}
+
     @GetMapping(path = "/trips", produces = "application/json")
     public List<Trip> trips(@RequestParam(name="tripDestinationFragment", required = false) String nameFragment){
         System.out.println("Zapytanie zawierało parametr 'tripDestinationFragment' o wartości: "+nameFragment);
@@ -75,15 +70,6 @@ public class TripController {
     }
 
 
-
-//    @GetMapping(path = "/cities/{cityId}/revisions", produces = "application/json")
-//    public List<City> cityRevisionsById(@PathVariable("cityId") Integer id) {
-//        Revisions<Integer, City> allCityRevisions = cityService.getAllCityRevisions(id);
-//        List<City> cityChanges = allCityRevisions.get()
-//                .map(r -> r.getEntity())
-//                .collect(Collectors.toList());
-//        return cityChanges;
-//    }
 
 
 
