@@ -53,7 +53,7 @@ public class TripController {
             throw new RuntimeException(e);
         }
     }
-    @GetMapping(path = "/trips/{tripId}", produces = "application/json")
+    @GetMapping(path = "/{tripId}", produces = "application/json")
     public Trip tripsById(@PathVariable("tripId") Integer id){
         return tripService.getAllTrips(null).get(id);
     }
@@ -65,7 +65,7 @@ public class TripController {
                 .body( new ErrorMessage(exception.getMessage(), HttpStatus.NOT_FOUND.value()));
     }
 
-    @GetMapping(path = "/trips/{tripId}/revisions",produces = "application/json")
+    @GetMapping(path = "/{tripId}/revisions",produces = "application/json")
     public List<Trip> tripRevisionById(@PathVariable("tripId") Integer id){
         Revisions<Integer,Trip> allTripRevisions = tripService.getAllTripsRevisions(id);
         List<Trip> tripChanges = allTripRevisions.get()
@@ -96,11 +96,11 @@ public class TripController {
                 .status(HttpStatus.BAD_REQUEST)
                 .body( new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value()));
     }
-    @DeleteMapping(path = "/trips/{id}")
+    @DeleteMapping(path = "/{id}")
     public void removeTrip(@PathVariable Integer id) {
         tripService.removeTripById(id);
     }
-    @PutMapping(path = "/trips/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity updateTrip(@PathVariable Integer id, @RequestBody Trip trip) {
         tripService.updateTrip(id, trip);
         return ResponseEntity.noContent().build();

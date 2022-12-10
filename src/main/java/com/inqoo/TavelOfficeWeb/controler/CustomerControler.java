@@ -11,11 +11,12 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("customers")
 public class CustomerControler {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping(path = "/customers", produces = "application/json")
+    @GetMapping(path = "/", produces = "application/json")
     public List<Customer> customers( @RequestParam(name="firstNameFragment", required = false) String firstNameFragment,
                                     @RequestParam(name="addressFragment", required = false) String addressFragment,
                                     @RequestParam(name="trip", required = false) Boolean trip){
@@ -23,14 +24,14 @@ public class CustomerControler {
     }
 
 
-    @GetMapping(path = "/customers/{customerId}", produces = "application/json")
+    @GetMapping(path = "/{customerId}", produces = "application/json")
     public Customer customerById(@PathVariable("customerId") Integer id) {
 
         return customerService.getAllCustomers( null,null,null).get(id);
 
     }
 
-    @PostMapping(path = "/customers", consumes = "application/json")
+    @PostMapping(path = "/", consumes = "application/json")
     public ResponseEntity createNewTrip(@RequestBody Customer customer) {
         customerService.saveCustomer(customer);
         URI savedCustomerId = ServletUriComponentsBuilder.fromCurrentRequest()
